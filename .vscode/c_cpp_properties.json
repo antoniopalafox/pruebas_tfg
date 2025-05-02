@@ -10,6 +10,34 @@
                 "UNICODE",
                 "_UNICODE"
             ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc"
+        },
+        {
+          // ESP32 configuration
+          "name": "ESP32",
+          "includePath": [
+            "${workspaceFolder}/**",
+            "${IDF_PATH}/components/**",
+            "${IDF_PATH}/components/freertos/include",
+            "${IDF_PATH}/components/esp_common/include",
+            "${IDF_PATH}/components/driver/include",
+            "${IDF_PATH}/components/esp_timer/include",
+            "${IDF_PATH}/components/esp_system/include"
+          ],
+          "defines": [],
+          "compilerPath": "/home/antonio/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc", 
+          "cStandard": "c11",
+          "cppStandard": "c++17"
         }
     ],
     "version": 4
