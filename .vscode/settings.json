@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "idf.pythonInstallPath": "/usr/bin/python3",
     "idf.customExtraVars": {
         "IDF_TARGET": "esp32"
@@ -8,7 +7,4 @@
         "interface/ftdi/esp32_devkitj_v1.cfg",
         "target/esp32.cfg"
     ]
-=======
-    "idf.pythonInstallPath": "C:\\Espressif\\tools\\idf-python\\3.11.2\\python.exe"
->>>>>>> f60a1e65377f62fc3e64b074d2899c0a66e2a0e0
 }
