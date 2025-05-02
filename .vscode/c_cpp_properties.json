@@ -9,9 +9,7 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
-            ],
-            "cStandard": "c23",
-            "cppStandard": "c++23"
+            ]
         }
     ],
     "version": 4
