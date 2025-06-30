@@ -810,10 +810,6 @@ void app_main(void) {
     ESP_LOGI(TAG, "\n========================================");
     ESP_LOGI(TAG, "  CALIBRACIÓN CON BOTONES FÍSICOS      ");
     ESP_LOGI(TAG, "========================================");
-    ESP_LOGI(TAG, "Controles:");
-    ESP_LOGI(TAG, "- GPIO0 (BOOT): Avanzar/Continuar");
-    ESP_LOGI(TAG, "- GPIO35: Parar lecturas");
-    ESP_LOGI(TAG, "========================================\n");
     
     wait_for_button_press("¿Está listo para comenzar la calibración?");
     
