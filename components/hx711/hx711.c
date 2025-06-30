@@ -178,11 +178,10 @@ void hx711_power_up(hx711_sensor_t *sensor) {
         gpio_set_level(sensor->sck_pin, 0);
     }
 }*/
-
 // hx711.c
 #include "hx711.h"
 #include "freertos/portmacro.h" // Asegurarse de incluir esto para el mutex
-
+ 
 // Añadir mutex estático para secciones críticas
 static portMUX_TYPE hx711_spinlock = portMUX_INITIALIZER_UNLOCKED;
 
@@ -220,7 +219,7 @@ bool hx711_init(hx711_sensor_t *sensor, int dout_pin, int sck_pin, hx711_gain_t 
     gpio_set_level(sck_pin, 0);
     
     // Despertar el sensor
-    hx711_power_up(sensor);
+    //hx711_power_up(sensor);
     
     // Establecer la ganancia
     hx711_set_gain(sensor, gain);
@@ -350,7 +349,7 @@ void hx711_set_gain(hx711_sensor_t *sensor, hx711_gain_t gain) {
         hx711_read_raw(sensor);
     }
 }
-
+/*MODOS de ahorro de energia
 void hx711_power_down(hx711_sensor_t *sensor) {
     if (sensor != NULL) {
         gpio_set_level(sensor->sck_pin, 0);
@@ -364,3 +363,4 @@ void hx711_power_up(hx711_sensor_t *sensor) {
         gpio_set_level(sensor->sck_pin, 0);
     }
 }
+*/
