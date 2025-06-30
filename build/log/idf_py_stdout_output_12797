@@ -1,0 +1,131 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7128
+load:0x40078000,len:15688
+load:0x40080400,len:4
+load:0x40080404,len:3876
+entry 0x4008064c
+[0;32mI (29) boot: ESP-IDF v5.1.6-520-ge19b70d993 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jun 30 2025 11:18:17[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0c980h ( 51584) map[0m
+[0;32mI (123) esp_image: segment 1: paddr=0001c9a8 vaddr=3ffb0000 size=02228h (  8744) load[0m
+[0;32mI (126) esp_image: segment 2: paddr=0001ebd8 vaddr=40080000 size=01440h (  5184) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=1e32ch (123692) map[0m
+[0;32mI (181) esp_image: segment 4: paddr=0003e354 vaddr=40081440 size=0cc30h ( 52272) load[0m
+[0;32mI (210) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (211) boot: Disabling RNG early entropy source...[0m
+[0;32mI (222) cpu_start: Multicore app[0m
+[0;32mI (223) cpu_start: Pro cpu up.[0m
+[0;32mI (223) cpu_start: Starting app cpu, entry point is 0x40081340[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (240) cpu_start: Pro cpu start user code[0m
+[0;32mI (240) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (240) cpu_start: Application information:[0m
+[0;32mI (245) cpu_start: Project name:     sensor_test[0m
+[0;32mI (250) cpu_start: App version:      9e41382-dirty[0m
+[0;32mI (256) cpu_start: Compile time:     Jun 30 2025 11:53:48[0m
+[0;32mI (262) cpu_start: ELF file SHA256:  9c02a878...[0m
+[0;32mI (267) cpu_start: ESP-IDF:          v5.1.6-520-ge19b70d993[0m
+[0;32mI (273) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (278) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (283) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (288) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (295) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (301) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (307) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (314) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (320) heap_init: At 4008E070 len 00011F90 (71 KiB): IRAM[0m
+[0;32mI (328) spi_flash: detected chip: generic[0m
+[0;32mI (331) spi_flash: flash io: dio[0m
+[0;33mW (335) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (349) app_start: Starting scheduler on CPU0[0m
+[0;32mI (353) app_start: Starting scheduler on CPU1[0m
+[0;32mI (353) main_task: Started on CPU0[0m
+[0;32mI (363) main_task: Calling app_main()[0m
+[0;32mI (373) gpio: GPIO[0]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (373) gpio: GPIO[35]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (383) SENSOR_TEST: Botones inicializados:[0m
+[0;32mI (383) SENSOR_TEST: - GPIO0 (BOOT): Botón SIGUIENTE[0m
+[0;32mI (393) SENSOR_TEST: - GPIO35: Botón PARAR[0m
+[0;32mI (393) SENSOR_TEST: 
+========================================[0m
+[0;32mI (403) SENSOR_TEST:   CALIBRACIÓN CON BOTONES FÍSICOS      [0m
+[0;32mI (413) SENSOR_TEST: ========================================[0m
+[0;32mI (413) SENSOR_TEST: Controles:[0m
+[0;32mI (423) SENSOR_TEST: - GPIO0 (BOOT): Avanzar/Continuar[0m
+[0;32mI (423) SENSOR_TEST: - GPIO35: Parar lecturas[0m
+[0;32mI (433) SENSOR_TEST: ========================================
+[0m
+[0;32mI (443) SENSOR_TEST: 
+¿Está listo para comenzar la calibración?[0m
+[0;32mI (443) SENSOR_TEST: Presione el botón BOOT (GPIO0) para continuar...[0m
+[0;32mI (6853) SENSOR_TEST: ✓ Botón presionado, continuando...[0m
+[0;32mI (7053) SENSOR_TEST: Bus I2C inicializado[0m
+[0;32mI (7053) SENSOR_TEST: 
+--- PASO 1: CALIBRANDO SENSOR LÁSER VL53L0X ---[0m
+[0;32mI (7053) SENSOR_TEST: Inicializando sensor VL53L0X...[0m
+[0;31mE (7063) VL53L0X: Error reading device ID[0m
+[0;31mE (7063) SENSOR_TEST: Error al inicializar VL53L0X[0m
+[0;31mE (7063) SENSOR_TEST: ✗ Error en calibración del sensor láser[0m
+[0;32mI (7073) SENSOR_TEST: 
+Calibración láser completada. ¿Continuar con sensor ultrasónico?[0m
+[0;32mI (7083) SENSOR_TEST: Presione el botón BOOT (GPIO0) para continuar...[0m
+[0;32mI (15393) SENSOR_TEST: ✓ Botón presionado, continuando...[0m
+[0;32mI (15593) SENSOR_TEST: 
+--- PASO 2: CALIBRANDO SENSOR ULTRASÓNICO HC-SR04P ---[0m
+[0;32mI (15593) SENSOR_TEST: Inicializando sensor HC-SR04P...[0m
+[0;32mI (15593) gpio: GPIO[12]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (15603) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (15613) SENSOR_TEST: Realizando lecturas de prueba del sensor ultrasónico...[0m
+[0;32mI (15623) SENSOR_TEST: Lectura 1: 14.85 cm[0m
+[0;32mI (16123) SENSOR_TEST: Lectura 2: 14.83 cm[0m
+[0;32mI (16623) SENSOR_TEST: Lectura 3: 14.83 cm[0m
+[0;32mI (17123) SENSOR_TEST: ✓ Calibración del sensor ultrasónico completada[0m
+[0;32mI (17123) SENSOR_TEST: ✓ Sensor ultrasónico calibrado exitosamente[0m
+[0;32mI (17123) SENSOR_TEST: 
+Calibración ultrasónica completada. ¿Continuar con sensor de peso?[0m
+[0;32mI (17133) SENSOR_TEST: Presione el botón BOOT (GPIO0) para continuar...[0m
+[0;32mI (60043) SENSOR_TEST: ✓ Botón presionado, continuando...[0m
+[0;32mI (60243) SENSOR_TEST: 
+--- PASO 3: CALIBRANDO SENSOR DE PESO HX711 ---[0m
+[0;32mI (60243) SENSOR_TEST: Inicializando sensor HX711...[0m
+[0;32mI (60243) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (60253) gpio: GPIO[26]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (60263) SENSOR_TEST: Error al inicializar HX711[0m
+[0;31mE (60263) SENSOR_TEST: ✗ Error en calibración del sensor de peso[0m
+[0;32mI (60273) SENSOR_TEST: 
+=== CALIBRACIÓN COMPLETADA ===[0m
+[0;32mI (60273) SENSOR_TEST: 
+¿Iniciar lecturas continuas de los sensores?[0m
+[0;32mI (60283) SENSOR_TEST: Presione el botón BOOT (GPIO0) para continuar...[0m
+[0;32mI (101193) SENSOR_TEST: ✓ Botón presionado, continuando...[0m
+[0;32mI (101393) SENSOR_TEST: 
+=== INICIANDO LECTURAS CONTINUAS ===[0m
+[0;32mI (101393) SENSOR_TEST: Presione GPIO35 en cualquier momento para detener[0m
+[0;32mI (101393) SENSOR_TEST: Iniciando tarea de sensor ultrasónico HC-SR04P[0m
+[0;32mI (101403) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (101403) SENSOR_TEST: Iniciando tarea de sensor de peso HX711[0m
+[0;32mI (101413) SENSOR_TEST: HX711: Peso: -5355523.00 g[0m
+[0;32mI (101413) SENSOR_TEST: Iniciando tarea de sensor láser VL53L0X[0m
+[0;32mI (101423) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (101433) SENSOR_TEST: Monitor de botón STOP iniciado - Presione GPIO35 para detener[0m
+[0;32mI (101433) SENSOR_TEST: Todas las tareas de lectura iniciadas[0m
+[0;32mI (102403) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (102413) SENSOR_TEST: HX711: Peso: -5617667.00 g[0m
+[0;32mI (102423) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m

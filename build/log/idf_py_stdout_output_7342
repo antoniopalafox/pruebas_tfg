@@ -1,0 +1,133 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7128
+load:0x40078000,len:15688
+load:0x40080400,len:4
+load:0x40080404,len:3876
+entry 0x4008064c
+[0;32mI (29) boot: ESP-IDF v5.1.6-520-ge19b70d993 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jun 30 2025 11:18:17[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0be28h ( 48680) map[0m
+[0;32mI (121) esp_image: segment 1: paddr=0001be50 vaddr=3ffb0000 size=02228h (  8744) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=0001e080 vaddr=40080000 size=01f98h (  8088) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=1a41ch (107548) map[0m
+[0;32mI (175) esp_image: segment 4: paddr=0003a444 vaddr=40081f98 size=0beb4h ( 48820) load[0m
+[0;32mI (202) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (202) boot: Disabling RNG early entropy source...[0m
+[0;32mI (214) cpu_start: Multicore app[0m
+[0;32mI (215) cpu_start: Pro cpu up.[0m
+[0;32mI (215) cpu_start: Starting app cpu, entry point is 0x4008132c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (232) cpu_start: Pro cpu start user code[0m
+[0;32mI (232) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (232) cpu_start: Application information:[0m
+[0;32mI (237) cpu_start: Project name:     sensor_test[0m
+[0;32mI (242) cpu_start: App version:      1bdfe7b-dirty[0m
+[0;32mI (248) cpu_start: Compile time:     Jun 30 2025 11:15:40[0m
+[0;32mI (254) cpu_start: ELF file SHA256:  73af6dbe...[0m
+[0;32mI (259) cpu_start: ESP-IDF:          v5.1.6-520-ge19b70d993[0m
+[0;32mI (265) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (270) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (275) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (280) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (287) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (293) heap_init: At 3FFB2B38 len 0002D4C8 (181 KiB): DRAM[0m
+[0;32mI (299) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (305) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (312) heap_init: At 4008DE4C len 000121B4 (72 KiB): IRAM[0m
+[0;32mI (319) spi_flash: detected chip: generic[0m
+[0;32mI (323) spi_flash: flash io: dio[0m
+[0;33mW (326) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (340) app_start: Starting scheduler on CPU0[0m
+[0;32mI (345) app_start: Starting scheduler on CPU1[0m
+[0;32mI (345) main_task: Started on CPU0[0m
+[0;32mI (355) main_task: Calling app_main()[0m
+[0;32mI (365) SENSOR_TEST: === INICIANDO CALIBRACIÓN SECUENCIAL ===[0m
+[0;32mI (365) SENSOR_TEST: Bus I2C inicializado[0m
+[0;32mI (365) SENSOR_TEST: 
+--- PASO 1: CALIBRANDO SENSOR LÁSER VL53L0X ---[0m
+[0;32mI (375) SENSOR_TEST: Inicializando sensor VL53L0X...[0m
+[0;31mE (385) VL53L0X: Error reading device ID[0m
+[0;31mE (385) SENSOR_TEST: ✗ Error en calibración del sensor láser[0m
+[0;32mI (395) SENSOR_TEST: 
+--- PASO 2: CALIBRANDO SENSOR ULTRASÓNICO HC-SR04P ---[0m
+[0;32mI (395) SENSOR_TEST: Inicializando sensor HC-SR04P...[0m
+[0;32mI (405) gpio: GPIO[12]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (415) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (425) SENSOR_TEST: Realizando lecturas de prueba...[0m
+[0;32mI (435) SENSOR_TEST: Lectura 1: 38.66 cm[0m
+[0;32mI (935) SENSOR_TEST: Lectura 2: 38.19 cm[0m
+[0;32mI (1435) SENSOR_TEST: Lectura 3: 38.64 cm[0m
+[0;32mI (1935) SENSOR_TEST: ✓ Sensor ultrasónico calibrado exitosamente[0m
+[0;32mI (1935) SENSOR_TEST: 
+--- PASO 3: CALIBRANDO SENSOR DE PESO HX711 ---[0m
+[0;32mI (1935) SENSOR_TEST: ATENCIÓN: Este paso requiere su intervención manual[0m
+[0;32mI (1945) SENSOR_TEST: Inicializando sensor HX711...[0m
+[0;32mI (1945) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1955) gpio: GPIO[26]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1965) SENSOR_TEST: ✗ Error en calibración del sensor de peso[0m
+[0;32mI (1975) SENSOR_TEST: 
+=== CALIBRACIÓN COMPLETADA - INICIANDO LECTURAS ===[0m
+[0;32mI (1975) SENSOR_TEST: Iniciando tarea de sensor ultrasónico HC-SR04P[0m
+[0;32mI (1995) SENSOR_TEST: HC-SR04P: Distancia: 38.17 cm[0m
+[0;32mI (1995) SENSOR_TEST: Iniciando tarea de sensor de peso HX711[0m
+[0;32mI (1995) SENSOR_TEST: HX711: Peso: 0.00 g[0m
+[0;32mI (2005) SENSOR_TEST: Iniciando tarea de sensor láser VL53L0X[0m
+[0;32mI (2015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (2015) SENSOR_TEST: Todas las tareas de lectura iniciadas[0m
+[0;32mI (2025) main_task: Returned from app_main()[0m
+[0;32mI (2995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (3005) SENSOR_TEST: HX711: Peso: 6100476.00 g[0m
+[0;32mI (3015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (3995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (4005) SENSOR_TEST: HX711: Peso: 6428156.00 g[0m
+[0;32mI (4015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (4995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (5005) SENSOR_TEST: HX711: Peso: 6559228.00 g[0m
+[0;32mI (5015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (5995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (6005) SENSOR_TEST: HX711: Peso: 6428156.00 g[0m
+[0;32mI (6015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (6995) SENSOR_TEST: HC-SR04P: Distancia: 38.17 cm[0m
+[0;32mI (7005) SENSOR_TEST: HX711: Peso: 6362620.00 g[0m
+[0;32mI (7015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (7995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (8005) SENSOR_TEST: HX711: Peso: 5576188.00 g[0m
+[0;32mI (8015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (8995) SENSOR_TEST: HC-SR04P: Distancia: 38.17 cm[0m
+[0;32mI (9005) SENSOR_TEST: HX711: Peso: 4462076.00 g[0m
+[0;32mI (9015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (9995) SENSOR_TEST: HC-SR04P: Distancia: 38.66 cm[0m
+[0;32mI (10005) SENSOR_TEST: HX711: Peso: 3216892.00 g[0m
+[0;32mI (10015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (10995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (11005) SENSOR_TEST: HX711: Peso: 4527612.00 g[0m
+[0;32mI (11015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (11995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (12005) SENSOR_TEST: HX711: Peso: 5051900.00 g[0m
+[0;32mI (12015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (12995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (13005) SENSOR_TEST: HX711: Peso: 7935484.00 g[0m
+[0;32mI (13015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (13995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (14005) SENSOR_TEST: HX711: Peso: 5969404.00 g[0m
+[0;32mI (14015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (14995) SENSOR_TEST: HC-SR04P: Distancia: 38.19 cm[0m
+[0;32mI (15005) SENSOR_TEST: HX711: Peso: 6034940.00 g[0m
+[0;32mI (15015) SEN

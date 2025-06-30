@@ -1,0 +1,760 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7128
+load:0x40078000,len:15688
+load:0x40080400,len:4
+load:0x40080404,len:3876
+entry 0x4008064c
+[0;32mI (29) boot: ESP-IDF v5.1.6-520-ge19b70d993 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jun 30 2025 11:18:17[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v3.1[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0be28h ( 48680) map[0m
+[0;32mI (121) esp_image: segment 1: paddr=0001be50 vaddr=3ffb0000 size=02228h (  8744) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=0001e080 vaddr=40080000 size=01f98h (  8088) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=1a41ch (107548) map[0m
+[0;32mI (175) esp_image: segment 4: paddr=0003a444 vaddr=40081f98 size=0beb4h ( 48820) load[0m
+[0;32mI (202) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (202) boot: Disabling RNG early entropy source...[0m
+[0;32mI (214) cpu_start: Multicore app[0m
+[0;32mI (215) cpu_start: Pro cpu up.[0m
+[0;32mI (215) cpu_start: Starting app cpu, entry point is 0x4008132c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (232) cpu_start: Pro cpu start user code[0m
+[0;32mI (232) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (232) cpu_start: Application information:[0m
+[0;32mI (237) cpu_start: Project name:     sensor_test[0m
+[0;32mI (242) cpu_start: App version:      1bdfe7b-dirty[0m
+[0;32mI (248) cpu_start: Compile time:     Jun 30 2025 11:15:40[0m
+[0;32mI (254) cpu_start: ELF file SHA256:  73af6dbe...[0m
+[0;32mI (259) cpu_start: ESP-IDF:          v5.1.6-520-ge19b70d993[0m
+[0;32mI (265) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (270) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (275) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (280) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (287) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (293) heap_init: At 3FFB2B38 len 0002D4C8 (181 KiB): DRAM[0m
+[0;32mI (299) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (305) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (312) heap_init: At 4008DE4C len 000121B4 (72 KiB): IRAM[0m
+[0;32mI (319) spi_flash: detected chip: generic[0m
+[0;32mI (323) spi_flash: flash io: dio[0m
+[0;33mW (326) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (340) app_start: Starting scheduler on CPU0[0m
+[0;32mI (345) app_start: Starting scheduler on CPU1[0m
+[0;32mI (345) main_task: Started on CPU0[0m
+[0;32mI (355) main_task: Calling app_main()[0m
+[0;32mI (365) SENSOR_TEST: === INICIANDO CALIBRACIÓN SECUENCIAL ===[0m
+[0;32mI (365) SENSOR_TEST: Bus I2C inicializado[0m
+[0;32mI (365) SENSOR_TEST: 
+--- PASO 1: CALIBRANDO SENSOR LÁSER VL53L0X ---[0m
+[0;32mI (375) SENSOR_TEST: Inicializando sensor VL53L0X...[0m
+[0;31mE (385) VL53L0X: Error reading device ID[0m
+[0;31mE (385) SENSOR_TEST: ✗ Error en calibración del sensor láser[0m
+[0;32mI (395) SENSOR_TEST: 
+--- PASO 2: CALIBRANDO SENSOR ULTRASÓNICO HC-SR04P ---[0m
+[0;32mI (395) SENSOR_TEST: Inicializando sensor HC-SR04P...[0m
+[0;32mI (405) gpio: GPIO[12]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (415) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (425) SENSOR_TEST: Realizando lecturas de prueba...[0m
+[0;32mI (435) SENSOR_TEST: Lectura 1: 16.86 cm[0m
+[0;32mI (935) SENSOR_TEST: Lectura 2: 16.88 cm[0m
+[0;32mI (1435) SENSOR_TEST: Lectura 3: 16.86 cm[0m
+[0;32mI (1935) SENSOR_TEST: ✓ Sensor ultrasónico calibrado exitosamente[0m
+[0;32mI (1935) SENSOR_TEST: 
+--- PASO 3: CALIBRANDO SENSOR DE PESO HX711 ---[0m
+[0;32mI (1935) SENSOR_TEST: ATENCIÓN: Este paso requiere su intervención manual[0m
+[0;32mI (1945) SENSOR_TEST: Inicializando sensor HX711...[0m
+[0;32mI (1945) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1955) gpio: GPIO[26]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1965) SENSOR_TEST: ✗ Error en calibración del sensor de peso[0m
+[0;32mI (1975) SENSOR_TEST: 
+=== CALIBRACIÓN COMPLETADA - INICIANDO LECTURAS ===[0m
+[0;32mI (1975) SENSOR_TEST: Iniciando tarea de sensor ultrasónico HC-SR04P[0m
+[0;32mI (1995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (1995) SENSOR_TEST: Iniciando tarea de sensor de peso HX711[0m
+[0;32mI (1995) SENSOR_TEST: HX711: Peso: 0.00 g[0m
+[0;32mI (2005) SENSOR_TEST: Iniciando tarea de sensor láser VL53L0X[0m
+[0;32mI (2015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (2015) SENSOR_TEST: Todas las tareas de lectura iniciadas[0m
+[0;32mI (2025) main_task: Returned from app_main()[0m
+[0;32mI (2995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (3005) SENSOR_TEST: HX711: Peso: -4521220.00 g[0m
+[0;32mI (3015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (3995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (4005) SENSOR_TEST: HX711: Peso: -6159620.00 g[0m
+[0;32mI (4015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (4995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (5005) SENSOR_TEST: HX711: Peso: -5635332.00 g[0m
+[0;32mI (5015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (5995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (6005) SENSOR_TEST: HX711: Peso: -4914436.00 g[0m
+[0;32mI (6015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (6995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (7005) SENSOR_TEST: HX711: Peso: -6749444.00 g[0m
+[0;32mI (7015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (7995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (8005) SENSOR_TEST: HX711: Peso: -7273732.00 g[0m
+[0;32mI (8015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (8995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (9005) SENSOR_TEST: HX711: Peso: 6029051.00 g[0m
+[0;32mI (9015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (9995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (10005) SENSOR_TEST: HX711: Peso: -3139844.00 g[0m
+[0;32mI (10015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (10995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (11005) SENSOR_TEST: HX711: Peso: 6763004.00 g[0m
+[0;32mI (11015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (11995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (12005) SENSOR_TEST: HX711: Peso: -1298180.00 g[0m
+[0;32mI (12015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (12995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (13005) SENSOR_TEST: HX711: Peso: -4312836.00 g[0m
+[0;32mI (13015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (13995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (14005) SENSOR_TEST: HX711: Peso: -6999812.00 g[0m
+[0;32mI (14015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (14995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (15005) SENSOR_TEST: HX711: Peso: -5426948.00 g[0m
+[0;32mI (15015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (15995) SENSOR_TEST: HC-SR04P: Distancia: 16.88 cm[0m
+[0;32mI (16005) SENSOR_TEST: HX711: Peso: -6934276.00 g[0m
+[0;32mI (16015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (16995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (17005) SENSOR_TEST: HX711: Peso: -6803204.00 g[0m
+[0;32mI (17015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (17995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (18005) SENSOR_TEST: HX711: Peso: -7917316.00 g[0m
+[0;32mI (18015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (18995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (19005) SENSOR_TEST: HX711: Peso: -6475524.00 g[0m
+[0;32mI (19015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (19995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (20005) SENSOR_TEST: HX711: Peso: -7655172.00 g[0m
+[0;32mI (20015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (20995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (21005) SENSOR_TEST: HX711: Peso: -7261956.00 g[0m
+[0;32mI (21015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (21995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (22005) SENSOR_TEST: HX711: Peso: -4378372.00 g[0m
+[0;32mI (22015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (22995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (23005) SENSOR_TEST: HX711: Peso: -5295876.00 g[0m
+[0;32mI (23015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (23995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (24005) SENSOR_TEST: HX711: Peso: -6344452.00 g[0m
+[0;32mI (24015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (24995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (25005) SENSOR_TEST: HX711: Peso: 7614716.00 g[0m
+[0;32mI (25015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (25995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (26005) SENSOR_TEST: HX711: Peso: 481788.00 g[0m
+[0;32mI (26015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (26995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (27005) SENSOR_TEST: HX711: Peso: 2949115.00 g[0m
+[0;32mI (27015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (27995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (28005) SENSOR_TEST: HX711: Peso: -3069700.00 g[0m
+[0;32mI (28015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (28995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (29005) SENSOR_TEST: HX711: Peso: 928252.00 g[0m
+[0;32mI (29015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (29995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (30005) SENSOR_TEST: HX711: Peso: 533500.00 g[0m
+[0;32mI (30015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (30995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (31005) SENSOR_TEST: HX711: Peso: -1760516.00 g[0m
+[0;32mI (31015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (31995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (32005) SENSOR_TEST: HX711: Peso: -7084549.00 g[0m
+[0;32mI (32015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (32995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (33005) SENSOR_TEST: HX711: Peso: -2418948.00 g[0m
+[0;32mI (33015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (33995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (34005) SENSOR_TEST: HX711: Peso: 1581564.00 g[0m
+[0;32mI (34015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (34995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (35005) SENSOR_TEST: HX711: Peso: -4647172.00 g[0m
+[0;32mI (35015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (35995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (36005) SENSOR_TEST: HX711: Peso: 6953212.00 g[0m
+[0;32mI (36015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (36995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (37005) SENSOR_TEST: HX711: Peso: -5564164.00 g[0m
+[0;32mI (37015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (37995) SENSOR_TEST: HC-SR04P: Distancia: 16.85 cm[0m
+[0;32mI (38005) SENSOR_TEST: HX711: Peso: 1901564.00 g[0m
+[0;32mI (38015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (38995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (39005) SENSOR_TEST: HX711: Peso: 7668732.00 g[0m
+[0;32mI (39015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (39995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (40005) SENSOR_TEST: HX711: Peso: 7078908.00 g[0m
+[0;32mI (40015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (40995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (41005) SENSOR_TEST: HX711: Peso: 6554620.00 g[0m
+[0;32mI (41015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (41995) SENSOR_TEST: HC-SR04P: Distancia: 16.86 cm[0m
+[0;32mI (42005) SENSOR_TEST: HX711: Peso: 7078908.00 g[0m
+[0;32mI (42015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (42995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (43005) SENSOR_TEST: HX711: Peso: -6749188.00 g[0m
+[0;32mI (43015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (43995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (44005) SENSOR_TEST: HX711: Peso: -4848644.00 g[0m
+[0;32mI (44015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (44995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (45005) SENSOR_TEST: HX711: Peso: -6355972.00 g[0m
+[0;32mI (45015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (45995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (46005) SENSOR_TEST: HX711: Peso: 7209980.00 g[0m
+[0;32mI (46015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (46995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (47005) SENSOR_TEST: HX711: Peso: -5110788.00 g[0m
+[0;32mI (47015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (47995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (48005) SENSOR_TEST: HX711: Peso: -3477765.00 g[0m
+[0;32mI (48015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (48995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (49005) SENSOR_TEST: HX711: Peso: -5764868.00 g[0m
+[0;32mI (49015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (49995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (50005) SENSOR_TEST: HX711: Peso: -4519684.00 g[0m
+[0;32mI (50015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (50995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (51005) SENSOR_TEST: HX711: Peso: -6944516.00 g[0m
+[0;32mI (51015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (51995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (52005) SENSOR_TEST: HX711: Peso: -3208964.00 g[0m
+[0;32mI (52015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (52995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (53005) SENSOR_TEST: HX711: Peso: -4388612.00 g[0m
+[0;32mI (53015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (53995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (54005) SENSOR_TEST: HX711: Peso: -5240580.00 g[0m
+[0;32mI (54015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (54995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (55005) SENSOR_TEST: HX711: Peso: 4851964.00 g[0m
+[0;32mI (55015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (55995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (56005) SENSOR_TEST: HX711: Peso: 5440508.00 g[0m
+[0;32mI (56015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (56995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (57005) SENSOR_TEST: HX711: Peso: 5440508.00 g[0m
+[0;32mI (57015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (57995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (58005) SENSOR_TEST: HX711: Peso: 5178364.00 g[0m
+[0;32mI (58015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (58995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (59005) SENSOR_TEST: HX711: Peso: 7734268.00 g[0m
+[0;32mI (59015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (59995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (60005) SENSOR_TEST: HX711: Peso: 5571580.00 g[0m
+[0;32mI (60015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (60995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (61005) SENSOR_TEST: HX711: Peso: 5702652.00 g[0m
+[0;32mI (61015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (61995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (62005) SENSOR_TEST: HX711: Peso: -8190980.00 g[0m
+[0;32mI (62015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (62995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (63005) SENSOR_TEST: HX711: Peso: 2169084.00 g[0m
+[0;32mI (63015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (63995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (64005) SENSOR_TEST: HX711: Peso: 3933436.00 g[0m
+[0;32mI (64015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (64995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (65005) SENSOR_TEST: HX711: Peso: -8124676.00 g[0m
+[0;32mI (65015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (65995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (66005) SENSOR_TEST: HX711: Peso: 4589820.00 g[0m
+[0;32mI (66015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (66995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (67005) SENSOR_TEST: HX711: Peso: 2166012.00 g[0m
+[0;32mI (67015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (67995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (68005) SENSOR_TEST: HX711: Peso: -2291972.00 g[0m
+[0;32mI (68015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (68995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (69005) SENSOR_TEST: HX711: Peso: 4196092.00 g[0m
+[0;32mI (69015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (69995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (70005) SENSOR_TEST: HX711: Peso: 6751996.00 g[0m
+[0;32mI (70015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (70995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (71005) SENSOR_TEST: HX711: Peso: 3868412.00 g[0m
+[0;32mI (71015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (71995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (72005) SENSOR_TEST: HX711: Peso: 1640188.00 g[0m
+[0;32mI (72015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (72995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (73005) SENSOR_TEST: HX711: Peso: 2950908.00 g[0m
+[0;32mI (73015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (73995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (74005) SENSOR_TEST: HX711: Peso: 3278588.00 g[0m
+[0;32mI (74015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (74995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (75005) SENSOR_TEST: HX711: Peso: 4982524.00 g[0m
+[0;32mI (75015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (75995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (76005) SENSOR_TEST: HX711: Peso: 4065020.00 g[0m
+[0;32mI (76015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (76995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (77005) SENSOR_TEST: HX711: Peso: 1902332.00 g[0m
+[0;32mI (77015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (77995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (78005) SENSOR_TEST: HX711: Peso: 2623228.00 g[0m
+[0;32mI (78015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (78995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (79005) SENSOR_TEST: HX711: Peso: 1836796.00 g[0m
+[0;32mI (79015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (79995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (80005) SENSOR_TEST: HX711: Peso: 2885372.00 g[0m
+[0;32mI (80015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (80995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (81005) SENSOR_TEST: HX711: Peso: 2426620.00 g[0m
+[0;32mI (81015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (81995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (82005) SENSOR_TEST: HX711: Peso: 3933948.00 g[0m
+[0;32mI (82015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (82995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (83005) SENSOR_TEST: HX711: Peso: 3475196.00 g[0m
+[0;32mI (83015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (83995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (84005) SENSOR_TEST: HX711: Peso: 1836796.00 g[0m
+[0;32mI (84015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (84995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (85005) SENSOR_TEST: HX711: Peso: 2950908.00 g[0m
+[0;32mI (85015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (85995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (86005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (86015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (86995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (87005) SENSOR_TEST: HX711: Peso: 1050364.00 g[0m
+[0;32mI (87015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (87995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (88005) SENSOR_TEST: HX711: Peso: 5900028.00 g[0m
+[0;32mI (88015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (88995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (89005) SENSOR_TEST: HX711: Peso: 1312508.00 g[0m
+[0;32mI (89015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (89995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (90005) SENSOR_TEST: HX711: Peso: -129540.00 g[0m
+[0;32mI (90015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (90995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (91005) SENSOR_TEST: HX711: Peso: 6162172.00 g[0m
+[0;32mI (91015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (91995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (92005) SENSOR_TEST: HX711: Peso: 329468.00 g[0m
+[0;32mI (92015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (92995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (93005) SENSOR_TEST: HX711: Peso: 2623228.00 g[0m
+[0;32mI (93015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (93995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (94005) SENSOR_TEST: HX711: Peso: 4327164.00 g[0m
+[0;32mI (94015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (94995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (95005) SENSOR_TEST: HX711: Peso: 4720380.00 g[0m
+[0;32mI (95015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (95995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (96005) SENSOR_TEST: HX711: Peso: 1902332.00 g[0m
+[0;32mI (96015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (96995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (97005) SENSOR_TEST: HX711: Peso: 1378044.00 g[0m
+[0;32mI (97015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (97995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (98005) SENSOR_TEST: HX711: Peso: 2492156.00 g[0m
+[0;32mI (98015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (98995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (99005) SENSOR_TEST: HX711: Peso: 2164476.00 g[0m
+[0;32mI (99015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (99995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (100005) SENSOR_TEST: HX711: Peso: 3606268.00 g[0m
+[0;32mI (100015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (100995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (101005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (101015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (101995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (102005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (102015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (102995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (103005) SENSOR_TEST: HX711: Peso: 263932.00 g[0m
+[0;32mI (103015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (103995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (104005) SENSOR_TEST: HX711: Peso: 2361084.00 g[0m
+[0;32mI (104015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (104995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (105005) SENSOR_TEST: HX711: Peso: 4785916.00 g[0m
+[0;32mI (105015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (105995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (106005) SENSOR_TEST: HX711: Peso: 919292.00 g[0m
+[0;32mI (106015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (106995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (107005) SENSOR_TEST: HX711: Peso: 1509116.00 g[0m
+[0;32mI (107015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (107995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (108005) SENSOR_TEST: HX711: Peso: 1378044.00 g[0m
+[0;32mI (108015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (108995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (109005) SENSOR_TEST: HX711: Peso: 1574652.00 g[0m
+[0;32mI (109015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (109995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (110005) SENSOR_TEST: HX711: Peso: 1574652.00 g[0m
+[0;32mI (110015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (110995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (111005) SENSOR_TEST: HX711: Peso: 1115900.00 g[0m
+[0;32mI (111015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (111995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (112005) SENSOR_TEST: HX711: Peso: -522756.00 g[0m
+[0;32mI (112015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (112995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (113005) SENSOR_TEST: HX711: Peso: 591612.00 g[0m
+[0;32mI (113015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (113995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (114005) SENSOR_TEST: HX711: Peso: 1115900.00 g[0m
+[0;32mI (114015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (114995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (115005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (115015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (115995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (116005) SENSOR_TEST: HX711: Peso: -195076.00 g[0m
+[0;32mI (116015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (116995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (117005) SENSOR_TEST: HX711: Peso: 2492156.00 g[0m
+[0;32mI (117015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (117995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (118005) SENSOR_TEST: HX711: Peso: 2033404.00 g[0m
+[0;32mI (118015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (118995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (119005) SENSOR_TEST: HX711: Peso: -1178116.00 g[0m
+[0;32mI (119015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (119995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (120005) SENSOR_TEST: HX711: Peso: -129540.00 g[0m
+[0;32mI (120015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (120995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (121005) SENSOR_TEST: HX711: Peso: 1050364.00 g[0m
+[0;32mI (121015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (121995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (122005) SENSOR_TEST: HX711: Peso: -1767940.00 g[0m
+[0;32mI (122015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (122995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (123005) SENSOR_TEST: HX711: Peso: -129540.00 g[0m
+[0;32mI (123015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (123995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (124005) SENSOR_TEST: HX711: Peso: 329468.00 g[0m
+[0;32mI (124015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (124995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (125005) SENSOR_TEST: HX711: Peso: -2882052.00 g[0m
+[0;32mI (125015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (125995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (126005) SENSOR_TEST: HX711: Peso: -1767940.00 g[0m
+[0;32mI (126015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (126995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (127005) SENSOR_TEST: HX711: Peso: -1767940.00 g[0m
+[0;32mI (127015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (127995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (128005) SENSOR_TEST: HX711: Peso: -2816516.00 g[0m
+[0;32mI (128015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (128995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (129005) SENSOR_TEST: HX711: Peso: 67324.00 g[0m
+[0;32mI (129015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (129995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (130005) SENSOR_TEST: HX711: Peso: -4848132.00 g[0m
+[0;32mI (130015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (130995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (131005) SENSOR_TEST: HX711: Peso: -391684.00 g[0m
+[0;32mI (131015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (131995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (132005) SENSOR_TEST: HX711: Peso: 395004.00 g[0m
+[0;32mI (132015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (132995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (133005) SENSOR_TEST: HX711: Peso: -326148.00 g[0m
+[0;32mI (133015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (133995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (134005) SENSOR_TEST: HX711: Peso: 1050364.00 g[0m
+[0;32mI (134015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (134995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (135005) SENSOR_TEST: HX711: Peso: -1571332.00 g[0m
+[0;32mI (135015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (135995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (136005) SENSOR_TEST: HX711: Peso: -2488836.00 g[0m
+[0;32mI (136015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (136995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (137005) SENSOR_TEST: HX711: Peso: 329468.00 g[0m
+[0;32mI (137015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (137995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (138005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (138015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (138995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (139005) SENSOR_TEST: HX711: Peso: -1833476.00 g[0m
+[0;32mI (139015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (139995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (140005) SENSOR_TEST: HX711: Peso: 3540732.00 g[0m
+[0;32mI (140015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (140995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (141005) SENSOR_TEST: HX711: Peso: -1243652.00 g[0m
+[0;32mI (141015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (141995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (142005) SENSOR_TEST: HX711: Peso: -719364.00 g[0m
+[0;32mI (142015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (142995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (143005) SENSOR_TEST: HX711: Peso: 722684.00 g[0m
+[0;32mI (143015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (143995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (144005) SENSOR_TEST: HX711: Peso: 329468.00 g[0m
+[0;32mI (144015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (144995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (145005) SENSOR_TEST: HX711: Peso: 460540.00 g[0m
+[0;32mI (145015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (145995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (146005) SENSOR_TEST: HX711: Peso: -2488836.00 g[0m
+[0;32mI (146015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (146995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (147005) SENSOR_TEST: HX711: Peso: 2688764.00 g[0m
+[0;32mI (147015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (147995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (148005) SENSOR_TEST: HX711: Peso: 2361084.00 g[0m
+[0;32mI (148015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (148995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (149005) SENSOR_TEST: HX711: Peso: -457220.00 g[0m
+[0;32mI (149015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (149995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (150005) SENSOR_TEST: HX711: Peso: -2947588.00 g[0m
+[0;32mI (150015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (150995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (151005) SENSOR_TEST: HX711: Peso: -3078660.00 g[0m
+[0;32mI (151015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (151995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (152005) SENSOR_TEST: HX711: Peso: 919292.00 g[0m
+[0;32mI (152015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (152995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (153005) SENSOR_TEST: HX711: Peso: -2488836.00 g[0m
+[0;32mI (153015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (153995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (154005) SENSOR_TEST: HX711: Peso: -1636868.00 g[0m
+[0;32mI (154015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (154995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (155005) SENSOR_TEST: HX711: Peso: -326148.00 g[0m
+[0;32mI (155015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (155995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (156005) SENSOR_TEST: HX711: Peso: -981508.00 g[0m
+[0;32mI (156015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (156995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (157005) SENSOR_TEST: HX711: Peso: -1374724.00 g[0m
+[0;32mI (157015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (157995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (158005) SENSOR_TEST: HX711: Peso: 788220.00 g[0m
+[0;32mI (158015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (158995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (159005) SENSOR_TEST: HX711: Peso: -719364.00 g[0m
+[0;32mI (159015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (159995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (160005) SENSOR_TEST: HX711: Peso: -2161156.00 g[0m
+[0;32mI (160015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (160995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (161005) SENSOR_TEST: HX711: Peso: -1374724.00 g[0m
+[0;32mI (161015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (161995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (162005) SENSOR_TEST: HX711: Peso: 526076.00 g[0m
+[0;32mI (162015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (162995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (163005) SENSOR_TEST: HX711: Peso: 1574652.00 g[0m
+[0;32mI (163015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (163995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (164005) SENSOR_TEST: HX711: Peso: -588292.00 g[0m
+[0;32mI (164015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (164995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (165005) SENSOR_TEST: HX711: Peso: -195076.00 g[0m
+[0;32mI (165015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (165995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (166005) SENSOR_TEST: HX711: Peso: -326148.00 g[0m
+[0;32mI (166015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (166995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (167005) SENSOR_TEST: HX711: Peso: -3996164.00 g[0m
+[0;32mI (167015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (167995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (168005) SENSOR_TEST: HX711: Peso: -2423300.00 g[0m
+[0;32mI (168015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (168995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (169005) SENSOR_TEST: HX711: Peso: -3865092.00 g[0m
+[0;32mI (169015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (169995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (170005) SENSOR_TEST: HX711: Peso: 198396.00 g[0m
+[0;32mI (170015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (170995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (171005) SENSOR_TEST: HX711: Peso: -1047044.00 g[0m
+[0;32mI (171015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (171995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (172005) SENSOR_TEST: HX711: Peso: -4585988.00 g[0m
+[0;32mI (172015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (172995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (173005) SENSOR_TEST: HX711: Peso: -4389380.00 g[0m
+[0;32mI (173015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (173995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (174005) SENSOR_TEST: HX711: Peso: -3471876.00 g[0m
+[0;32mI (174015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (174995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (175005) SENSOR_TEST: HX711: Peso: -326148.00 g[0m
+[0;32mI (175015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (175995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (176005) SENSOR_TEST: HX711: Peso: -2226692.00 g[0m
+[0;32mI (176015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (176995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (177005) SENSOR_TEST: HX711: Peso: -2554372.00 g[0m
+[0;32mI (177015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (177995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (178005) SENSOR_TEST: HX711: Peso: -2161156.00 g[0m
+[0;32mI (178015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (178995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (179005) SENSOR_TEST: HX711: Peso: 2754300.00 g[0m
+[0;32mI (179015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (179995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (180005) SENSOR_TEST: HX711: Peso: -1178116.00 g[0m
+[0;32mI (180015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (180995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (181005) SENSOR_TEST: HX711: Peso: 1788.00 g[0m
+[0;32mI (181015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (181995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (182005) SENSOR_TEST: HX711: Peso: -3996164.00 g[0m
+[0;32mI (182015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (182995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (183005) SENSOR_TEST: HX711: Peso: -3144196.00 g[0m
+[0;32mI (183015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (183995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (184005) SENSOR_TEST: HX711: Peso: -2292228.00 g[0m
+[0;32mI (184015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (184995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (185005) SENSOR_TEST: HX711: Peso: -2357764.00 g[0m
+[0;32mI (185015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (185995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (186005) SENSOR_TEST: HX711: Peso: 1705724.00 g[0m
+[0;32mI (186015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (186995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (187005) SENSOR_TEST: HX711: Peso: -1505796.00 g[0m
+[0;32mI (187015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (187995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (188005) SENSOR_TEST: HX711: Peso: -3144196.00 g[0m
+[0;32mI (188015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (188995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (189005) SENSOR_TEST: HX711: Peso: 1574652.00 g[0m
+[0;32mI (189015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (189995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (190005) SENSOR_TEST: HX711: Peso: 460540.00 g[0m
+[0;32mI (190015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (190995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (191005) SENSOR_TEST: HX711: Peso: 1509116.00 g[0m
+[0;32mI (191015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (191995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (192005) SENSOR_TEST: HX711: Peso: -522756.00 g[0m
+[0;32mI (192015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (192995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (193005) SENSOR_TEST: HX711: Peso: 984828.00 g[0m
+[0;32mI (193015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (193995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (194005) SENSOR_TEST: HX711: Peso: 67324.00 g[0m
+[0;32mI (194015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (194995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (195005) SENSOR_TEST: HX711: Peso: 2033404.00 g[0m
+[0;32mI (195015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (195995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (196005) SENSOR_TEST: HX711: Peso: -64004.00 g[0m
+[0;32mI (196015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (196995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (197005) SENSOR_TEST: HX711: Peso: -1571332.00 g[0m
+[0;32mI (197015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (197995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (198005) SENSOR_TEST: HX711: Peso: 1574652.00 g[0m
+[0;32mI (198015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (198995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (199005) SENSOR_TEST: HX711: Peso: -3144196.00 g[0m
+[0;32mI (199015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (199995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (200005) SENSOR_TEST: HX711: Peso: -3340804.00 g[0m
+[0;32mI (200015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (200995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (201005) SENSOR_TEST: HX711: Peso: 1788.00 g[0m
+[0;32mI (201015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (201995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (202005) SENSOR_TEST: HX711: Peso: -2161156.00 g[0m
+[0;32mI (202015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (202995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (203005) SENSOR_TEST: HX711: Peso: -1636868.00 g[0m
+[0;32mI (203015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (203995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (204005) SENSOR_TEST: HX711: Peso: 198396.00 g[0m
+[0;32mI (204015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (204995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (205005) SENSOR_TEST: HX711: Peso: -195076.00 g[0m
+[0;32mI (205015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (205995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (206005) SENSOR_TEST: HX711: Peso: 132860.00 g[0m
+[0;32mI (206015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (206995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (207005) SENSOR_TEST: HX711: Peso: -1112580.00 g[0m
+[0;32mI (207015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (207995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (208005) SENSOR_TEST: HX711: Peso: -260612.00 g[0m
+[0;32mI (208015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (208995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (209005) SENSOR_TEST: HX711: Peso: 263932.00 g[0m
+[0;32mI (209015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (209995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (210005) SENSOR_TEST: HX711: Peso: 2426620.00 g[0m
+[0;32mI (210015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (210995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (211005) SENSOR_TEST: HX711: Peso: 1378044.00 g[0m
+[0;32mI (211015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (211995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (212005) SENSOR_TEST: HX711: Peso: 1902332.00 g[0m
+[0;32mI (212015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (212995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (213005) SENSOR_TEST: HX711: Peso: -2750980.00 g[0m
+[0;32mI (213015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (213995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (214005) SENSOR_TEST: HX711: Peso: 67324.00 g[0m
+[0;32mI (214015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (214995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (215005) SENSOR_TEST: HX711: Peso: 2230012.00 g[0m
+[0;32mI (215015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (215995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (216005) SENSOR_TEST: HX711: Peso: -1178116.00 g[0m
+[0;32mI (216015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (216995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (217005) SENSOR_TEST: HX711: Peso: -1636868.00 g[0m
+[0;32mI (217015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (217995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (218005) SENSOR_TEST: HX711: Peso: 67324.00 g[0m
+[0;32mI (218015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (218995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (219005) SENSOR_TEST: HX711: Peso: -4913668.00 g[0m
+[0;32mI (219015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (219995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (220005) SENSOR_TEST: HX711: Peso: -2619908.00 g[0m
+[0;32mI (220015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (220995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (221005) SENSOR_TEST: HX711: Peso: -8321540.00 g[0m
+[0;32mI (221015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (221995) SENSOR_TEST: HC-SR04P: Distancia: 15.88 cm[0m
+[0;32mI (222005) SENSOR_TEST: HX711: Peso: 8193532.00 g[0m
+[0;32mI (222015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (222995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (223005) SENSOR_TEST: HX711: Peso: -6945284.00 g[0m
+[0;32mI (223015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
+[0;32mI (223995) SENSOR_TEST: HC-SR04P: Distancia: 15.90 cm[0m
+[0;32mI (224005) SENSOR_TEST: HX711: Peso: -6224388.00 g[0m
+[0;32mI (224015) SENSOR_TEST: VL53L0X: Distancia: 0 mm[0m
