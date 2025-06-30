@@ -1,4 +1,4 @@
-/* * Data converted from /home/antonio/esp/pruebas_tfg/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /mnt/d/pruebas_tfg/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded
