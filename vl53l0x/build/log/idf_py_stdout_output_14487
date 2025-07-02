@@ -1,0 +1,377 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15532
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (29) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jul  2 2025 12:00:47[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (42) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (82) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0e1dch ( 57820) map[0m
+[0;32mI (122) esp_image: segment 1: paddr=0001e204 vaddr=3ffb0000 size=01e14h (  7700) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=00020020 vaddr=400d0020 size=198d0h (104656) map[0m
+[0;32mI (164) esp_image: segment 3: paddr=000398f8 vaddr=3ffb1e14 size=004c8h (  1224) load[0m
+[0;32mI (165) esp_image: segment 4: paddr=00039dc8 vaddr=40080000 size=0e46ch ( 58476) load[0m
+[0;32mI (200) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (200) boot: Disabling RNG early entropy source...[0m
+[0;32mI (211) cpu_start: Multicore app[0m
+[0;32mI (220) cpu_start: Pro cpu start user code[0m
+[0;32mI (220) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (220) cpu_start: Application information:[0m
+[0;32mI (223) cpu_start: Project name:     vl53l0x_project[0m
+[0;32mI (229) cpu_start: App version:      c566197-dirty[0m
+[0;32mI (234) cpu_start: Compile time:     Jul  2 2025 12:00:27[0m
+[0;32mI (240) cpu_start: ELF file SHA256:  76fb79ff5...[0m
+[0;32mI (246) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (250) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (255) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (260) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (265) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (272) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (278) heap_init: At 3FFB2BE8 len 0002D418 (181 KiB): DRAM[0m
+[0;32mI (284) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (290) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (297) heap_init: At 4008E46C len 00011B94 (70 KiB): IRAM[0m
+[0;32mI (304) spi_flash: detected chip: generic[0m
+[0;32mI (308) spi_flash: flash io: dio[0m
+[0;33mW (312) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (325) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (336) main_task: Started on CPU0[0m
+[0;32mI (346) main_task: Calling app_main()[0m
+
+💊 VL53L0X DIAGNÓSTICO Y REPARACIÓN FINAL
+==========================================
+
+🔧 DIAGNÓSTICO FINAL VL53L0X
+============================
+[0;32mI (356) gpio: GPIO[23]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Reset hardware VL53L0X...
+[0;32mI (366) main_task: Returned from app_main()[0m
+✅ Reset completado
+
+🔧 CALIBRACIÓN SPAD MANUAL
+==========================
+✅ Comunicación OK - Model ID: 0xEE
+
+Paso 1: Reset software completo...
+Paso 2: Configuración crítica...
+Paso 3: Calibración SPAD...
+Configurando SPAD array...
+Configurando timing...
+Configurando interrupciones...
+Aplicando fix para status 0x40...
+Configuración final...
+✅ Calibración SPAD completada
+✅ Status post-calibración: 0x40
+⚠️ Status 0x40 persiste - posible hardware dañado
+
+📏 PRUEBA FINAL DE MEDICIÓN:
+============================
+
+--- Intento #1 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #1 falló
+
+--- Intento #2 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #2 falló
+
+--- Intento #3 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #3 falló
+
+💔 DIAGNÓSTICO FINAL:
+=====================
+❌ Hardware VL53L0X defectuoso
+   • Status 0x40 persistente indica fallo del láser interno
+   • Posibles causas:
+     - Daño por sobrevoltaje (5V en lugar de 3.3V)
+     - Sensor falsificado con hardware defectuoso
+     - Fallo de fabricación
+   • Solución: Reemplazar el sensor
+=====================
+[0;31mE (7206) FreeRTOS: FreeRTOS Task "sensor_task" should not return, Aborting now![0m
+
+abort() was called at PC 0x40087bdf on core 0
+
+
+Backtrace: 0x40081736:0x3ffb8160 0x40087119:0x3ffb8180 0x4008cdfd:0x3ffb81a0 0x40087bdf:0x3ffb8210
+
+
+
+
+ELF file SHA256: 76fb79ff5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15532
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (29) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jul  2 2025 12:00:47[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (42) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (82) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0e1dch ( 57820) map[0m
+[0;32mI (122) esp_image: segment 1: paddr=0001e204 vaddr=3ffb0000 size=01e14h (  7700) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=00020020 vaddr=400d0020 size=198d0h (104656) map[0m
+[0;32mI (164) esp_image: segment 3: paddr=000398f8 vaddr=3ffb1e14 size=004c8h (  1224) load[0m
+[0;32mI (164) esp_image: segment 4: paddr=00039dc8 vaddr=40080000 size=0e46ch ( 58476) load[0m
+[0;32mI (200) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (200) boot: Disabling RNG early entropy source...[0m
+[0;32mI (211) cpu_start: Multicore app[0m
+[0;32mI (220) cpu_start: Pro cpu start user code[0m
+[0;32mI (220) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (220) cpu_start: Application information:[0m
+[0;32mI (223) cpu_start: Project name:     vl53l0x_project[0m
+[0;32mI (229) cpu_start: App version:      c566197-dirty[0m
+[0;32mI (234) cpu_start: Compile time:     Jul  2 2025 12:00:27[0m
+[0;32mI (240) cpu_start: ELF file SHA256:  76fb79ff5...[0m
+[0;32mI (245) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (250) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (255) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (260) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (265) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (272) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (278) heap_init: At 3FFB2BE8 len 0002D418 (181 KiB): DRAM[0m
+[0;32mI (284) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (290) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (297) heap_init: At 4008E46C len 00011B94 (70 KiB): IRAM[0m
+[0;32mI (304) spi_flash: detected chip: generic[0m
+[0;32mI (308) spi_flash: flash io: dio[0m
+[0;33mW (311) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (325) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (336) main_task: Started on CPU0[0m
+[0;32mI (346) main_task: Calling app_main()[0m
+
+💊 VL53L0X DIAGNÓSTICO Y REPARACIÓN FINAL
+==========================================
+
+🔧 DIAGNÓSTICO FINAL VL53L0X
+============================
+[0;32mI (356) gpio: GPIO[23]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Reset hardware VL53L0X...
+[0;32mI (366) main_task: Returned from app_main()[0m
+✅ Reset completado
+
+🔧 CALIBRACIÓN SPAD MANUAL
+==========================
+✅ Comunicación OK - Model ID: 0xEE
+
+Paso 1: Reset software completo...
+Paso 2: Configuración crítica...
+Paso 3: Calibración SPAD...
+Configurando SPAD array...
+Configurando timing...
+Configurando interrupciones...
+Aplicando fix para status 0x40...
+Configuración final...
+✅ Calibración SPAD completada
+✅ Status post-calibración: 0x40
+⚠️ Status 0x40 persiste - posible hardware dañado
+
+📏 PRUEBA FINAL DE MEDICIÓN:
+============================
+
+--- Intento #1 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #1 falló
+
+--- Intento #2 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #2 falló
+
+--- Intento #3 ---
+
+🔄 Medición forzada...
+Status pre-medición: 0x40
+Intentando resetear status 0x40...
+Status después de reset: 0x40
+Iniciando medición con comando alternativo...
+Status actual: 0x40 (0.2s)
+Status actual: 0x40 (0.5s)
+Status actual: 0x40 (0.8s)
+❌ DIAGNÓSTICO: Hardware dañado
+   El sensor está físicamente defectuoso
+   Status 0x40 indica fallo interno del láser
+❌ Intento #3 falló
+
+💔 DIAGNÓSTICO FINAL:
+=====================
+❌ Hardware VL53L0X defectuoso
+   • Status 0x40 persistente indica fallo del láser interno
+   • Posibles causas:
+     - Daño por sobrevoltaje (5V en lugar de 3.3V)
+     - Sensor falsificado con hardware defectuoso
+     - Fallo de fabricación
+   • Solución: Reemplazar el sensor
+=====================
+[0;31mE (7206) FreeRTOS: FreeRTOS Task "sensor_task" should not return, Aborting now![0m
+
+abort() was called at PC 0x40087bdf on core 0
+
+
+Backtrace: 0x40081736:0x3ffb8160 0x40087119:0x3ffb8180 0x4008cdfd:0x3ffb81a0 0x40087bdf:0x3ffb8210
+
+
+
+
+ELF file SHA256: 76fb79ff5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15532
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (29) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jul  2 2025 12:00:47[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (42) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (82) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0e1dch ( 57820) map[0m
+[0;32mI (122) esp_image: segment 1: paddr=0001e204 vaddr=3ffb0000 size=01e14h (  7700) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=00020020 vaddr=400d0020 size=198d0h (104656) map[0m
+[0;32mI (164) esp_image: segment 3: paddr=000398f8 vaddr=3ffb1e14 size=004c8h (  1224) load[0m
+[0;32mI (164) esp_image: segment 4: paddr=00039dc8 vaddr=40080000 size=0e46ch ( 58476) load[0m
+[0;32mI (200) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (200) boot: Disabling RNG early entropy source...[0m
+[0;32mI (211) cpu_start: Multicore app[0m
+[0;32mI (220) cpu_start: Pro cpu start user code[0m
+[0;32mI (220) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (220) cpu_start: Application information:[0m
+[0;32mI (223) cpu_start: Project name:     vl53l0x_project[0m
+[0;32mI (229) cpu_start: App version:      c566197-dirty[0m
+[0;32mI (234) cpu_start: Compile time:     Jul  2 2025 12:00:27[0m
+[0;32mI (240) cpu_start: ELF file SHA256:  76fb79ff5...[0m
+[0;32mI (245) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (250) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (255) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (260) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (265) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (272) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (278) heap_init: At 3FFB2BE8 len 0002D418 (181 KiB): DRAM[0m
+[0;32mI (284) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (290) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (297) heap_init: At 4008E46C len 00011B94 (70 KiB): IRAM[0m
+[0;32mI (304) spi_flash: detected chip: generic[0m
+[0;32mI (308) spi_flash: flash io: dio[0m
+[0;33mW (311) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (325) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (336) main_task: Started on CPU0[0m
+[0;32mI (346) main_task: Calling app_main()[0m
+
+💊 VL53L0X DIAGNÓSTICO Y REPARACIÓN FINAL
+==========================================
+
+🔧 DIAGNÓSTICO FINAL VL53L0X
+============================
+[0;32mI (356) gpio: GPIO[23]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Reset hardware VL53L0X...
+[0;32mI (366) main_task: Returned from app_main()[0m
+✅ Reset completado
+
+🔧 CALIBRACIÓN SPAD MANUAL
+=====================

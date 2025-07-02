@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/bootloader
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/bootloader.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/bootloader-complete.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
