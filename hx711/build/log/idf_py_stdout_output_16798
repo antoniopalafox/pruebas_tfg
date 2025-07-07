@@ -1,0 +1,658 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15532
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (29) boot: ESP-IDF v5.2 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Jul  3 2025 11:37:27[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (42) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (82) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0d968h ( 55656) map[0m
+[0;32mI (121) esp_image: segment 1: paddr=0001d990 vaddr=3ffb0000 size=022ach (  8876) load[0m
+[0;32mI (125) esp_image: segment 2: paddr=0001fc44 vaddr=40080000 size=003d4h (   980) load[0m
+[0;32mI (128) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=184a4h ( 99492) map[0m
+[0;32mI (170) esp_image: segment 4: paddr=000384cc vaddr=400803d4 size=0cac8h ( 51912) load[0m
+[0;32mI (197) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (197) boot: Disabling RNG early entropy source...[0m
+[0;32mI (208) cpu_start: Multicore app[0m
+[0;32mI (217) cpu_start: Pro cpu start user code[0m
+[0;32mI (217) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (217) cpu_start: Application information:[0m
+[0;32mI (220) cpu_start: Project name:     hx711_project[0m
+[0;32mI (226) cpu_start: App version:      1e9eee1-dirty[0m
+[0;32mI (231) cpu_start: Compile time:     Jul  3 2025 11:56:45[0m
+[0;32mI (237) cpu_start: ELF file SHA256:  27d06637e...[0m
+[0;32mI (243) cpu_start: ESP-IDF:          v5.2[0m
+[0;32mI (247) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (252) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (257) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (262) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (269) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (275) heap_init: At 3FFB2BE8 len 0002D418 (181 KiB): DRAM[0m
+[0;32mI (281) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (287) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (294) heap_init: At 4008CE9C len 00013164 (76 KiB): IRAM[0m
+[0;32mI (301) spi_flash: detected chip: generic[0m
+[0;32mI (305) spi_flash: flash io: dio[0m
+[0;33mW (309) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (323) main_task: Started on CPU0[0m
+[0;32mI (333) main_task: Calling app_main()[0m
+[0;32mI (343) HX711_MAIN: Iniciando tarea del sensor HX711[0m
+[0;32mI (343) HX711_MAIN: === PROYECTO ESP32 HX711 INICIADO ===[0m
+[0;32mI (343) HX711_MAIN: Configuración:[0m
+[0;32mI (353) HX711_MAIN:   - DOUT Pin: 26[0m
+[0;32mI (353) HX711_MAIN:   - SCK Pin: 27[0m
+[0;32mI (353) HX711_MAIN:   - Peso de calibración: 500 g[0m
+[0;32mI (363) HX711_MAIN:   - Ganancia: 128 (Canal A)[0m
+[0;32mI (373) HX711_MAIN: Tarea HX711 creada correctamente[0m
+[0;32mI (373) main_task: Returned from app_main()[0m
+[0;32mI (2373) HX711_MAIN: === VERIFICACIÓN DE CONEXIONES ===[0m
+[0;32mI (2373) HX711_MAIN: Pin DOUT (26): LOW[0m
+[0;32mI (2373) HX711_MAIN: Pin SCK (27): LOW[0m
+[0;32mI (3373) HX711_MAIN: Actividad DOUT - HIGH: 0, LOW: 100[0m
+[0;32mI (3373) HX711_MAIN: ✅ DOUT está en LOW - Sensor probablemente listo[0m
+[0;32mI (3373) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3383) gpio: GPIO[26]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (3593) HX711: Sensor despertado[0m
+[0;32mI (3593) HX711: Ganancia configurada a: 1[0m
+[0;32mI (3793) HX711: HX711 inicializado correctamente[0m
+[0;32mI (4793) HX711: === HX711 DEBUG INFO ===[0m
+[0;32mI (4793) HX711: DOUT Pin: 26[0m
+[0;32mI (4793) HX711: SCK Pin: 27[0m
+[0;32mI (4793) HX711: Offset: 0[0m
+[0;32mI (4793) HX711: Scale: 1.000000[0m
+[0;32mI (4793) HX711: Gain: 1[0m
+[0;32mI (4803) HX711: Sensor Ready: YES[0m
+[0;32mI (4803) HX711: Lecturas RAW recientes:[0m
+[0;32mI (4803) HX711:   Lectura 1: 1048575[0m
+[0;32mI (4913) HX711:   Lectura 2: 1048575[0m
+[0;32mI (5013) HX711:   Lectura 3: 1048575[0m
+[0;32mI (5113) HX711:   Lectura 4: 1048575[0m
+[0;32mI (5213) HX711:   Lectura 5: 1048575[0m
+[0;32mI (5313) HX711_MAIN: 
+=== LECTURAS RAW SIN CALIBRAR ===[0m
+[0;32mI (5313) HX711_MAIN: Lectura RAW #1: 1048575[0m
+[0;32mI (5813) HX711_MAIN: Lectura RAW #2: 1048575[0m
+[0;32mI (6313) HX711_MAIN: Lectura RAW #3: 1048575[0m
+[0;32mI (6813) HX711_MAIN: Lectura RAW #4: 1048575[0m
+[0;32mI (7313) HX711_MAIN: Lectura RAW #5: 1048575[0m
+[0;32mI (7813) HX711_MAIN: Lectura RAW #6: 1048575[0m
+[0;32mI (8313) HX711_MAIN: Lectura RAW #7: 1048575[0m
+[0;32mI (8813) HX711_MAIN: Lectura RAW #8: 1048575[0m
+[0;32mI (9313) HX711_MAIN: Lectura RAW #9: 1048575[0m
+[0;32mI (9813) HX711_MAIN: Lectura RAW #10: 1048575[0m
+[0;32mI (10313) HX711_MAIN: 
+=== PROCESO DE TARA ===[0m
+[0;32mI (10313) HX711_MAIN: IMPORTANTE: Retire todo peso de la balanza[0m
+[0;32mI (10313) HX711_MAIN: La tara comenzará en 5 segundos...[0m
+[0;32mI (10313) HX711_MAIN: Tara en 5 segundos...[0m
+[0;32mI (11323) HX711_MAIN: Tara en 4 segundos...[0m
+[0;32mI (12323) HX711_MAIN: Tara en 3 segundos...[0m
+[0;32mI (13323) HX711_MAIN: Tara en 2 segundos...[0m
+[0;32mI (14323) HX711_MAIN: Tara en 1 segundos...[0m
+[0;32mI (15323) HX711: Realizando tara con 15 muestras...[0m
+[0;32mI (15473) HX711: Tara completada. Offset: 3844777[0m
+[0;32mI (15473) HX711_MAIN: 
+=== VERIFICACIÓN DE TARA ===[0m
+[0;32mI (15473) HX711_MAIN: Verificación 1 - RAW: 4194303, Unidades: -3844778.00[0m
+[0;32mI (15973) HX711_MAIN: Verificación 2 - RAW: 1048575, Unidades: 4543830.00[0m
+[0;32mI (16473) HX711_MAIN: Verificación 3 - RAW: 1048575, Unidades: 4543830.00[0m
+[0;32mI (16973) HX711_MAIN: Verificación 4 - RAW: 1048575, Unidades: 4543830.00[0m
+[0;32mI (17473) HX711_MAIN: Verificación 5 - RAW: 1048575, Unidades: 4543830.00[0m
+[0;32mI (17973) HX711_MAIN: 
+=== PROCESO DE CALIBRACIÓN ===[0m
+[0;32mI (17973) HX711_MAIN: Coloque un peso conocido de 500 gramos en la balanza[0m
+[0;32mI (17973) HX711_MAIN: La calibración comenzará en 10 segundos...[0m
+[0;32mI (17973) HX711_MAIN: Calibración en 10 segundos...[0m
+[0;32mI (18983) HX711_MAIN: Calibración en 9 segundos...[0m
+[0;32mI (19983) HX711_MAIN: Calibración en 8 segundos...[0m
+[0;32mI (20983) HX711_MAIN: Calibración en 7 segundos...[0m
+[0;32mI (21983) HX711_MAIN: Calibración en 6 segundos...[0m
+[0;32mI (22983) HX711_MAIN: Calibración en 5 segundos...[0m
+[0;32mI (23983) HX711_MAIN: Calibración en 4 segundos...[0m
+[0;32mI (24983) HX711_MAIN: Calibración en 3 segundos...[0m
+[0;32mI (25983) HX711_MAIN: Calibración en 2 segundos...[0m
+[0;32mI (26983) HX711_MAIN: Calibración en 1 segundos...[0m
+[0;32mI (27983) HX711: Calibrando con peso conocido: 500.00 g[0m
+[0;32mI (28133) HX711: Calibración completada. Escala: -279.62[0m
+[0;32mI (28133) HX711_MAIN: Puede retirar el peso de calibración[0m
+[0;32mI (28133) HX711_MAIN: Comenzando lecturas normales en 3 segundos...[0m
+[0;32mI (31133) HX711: === HX711 DEBUG INFO ===[0m
+[0;32mI (31133) HX711: DOUT Pin: 26[0m
+[0;32mI (31133) HX711: SCK Pin: 27[0m
+[0;32mI (31133) HX711: Offset: 3844777[0m
+[0;32mI (31133) HX711: Scale: -279.619995[0m
+[0;32mI (31133) HX711: Gain: 1[0m
+[0;32mI (31143) HX711: Sensor Ready: YES[0m
+[0;32mI (31143) HX711: Lecturas RAW recientes:[0m
+[0;32mI (31153) HX711:   Lectura 1: 1048575[0m
+[0;32mI (31253) HX711:   Lectura 2: 1048575[0m
+[0;32mI (31353) HX711:   Lectura 3: 1048575[0m
+[0;32mI (31453) HX711:   Lectura 4: 1048575[0m
+[0;32mI (31553) HX711:   Lectura 5: 1048575[0m
+[0;32mI (31653) HX711_MAIN: 
+=== LECTURAS CONTINUAS ===[0m
+[0;32mI (31653) HX711_MAIN: Formato: [Tiempo] RAW: valor | Peso: valor g[0m
+[0;32mI (31653) HX711_MAIN: [1] RAW: 8388607 | Peso: -16250.02 g[0m
+[0;32mI (32653) HX711_MAIN: [2] RAW: 8388607 | Peso: -16250.02 g[0m
+[0;32mI (33653) HX711_MAIN: [3] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (34653) HX711_MAIN: [4] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (35653) HX711_MAIN: [5] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (36653) HX711_MAIN: [6] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (37653) HX711_MAIN: [7] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (38653) HX711_MAIN: [8] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (39653) HX711_MAIN: [9] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (40653) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (40653) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (40653) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (40653) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (40653) HX711_MAIN: [10] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (41663) HX711_MAIN: [11] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (42663) HX711_MAIN: [12] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (43663) HX711_MAIN: [13] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (44663) HX711_MAIN: [14] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (45663) HX711_MAIN: [15] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (46663) HX711_MAIN: [16] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (47663) HX711_MAIN: [17] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (48663) HX711_MAIN: [18] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (49663) HX711_MAIN: [19] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (50663) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (50663) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (50663) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (50663) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (50663) HX711_MAIN: [20] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (51673) HX711_MAIN: [21] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (52673) HX711_MAIN: [22] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (53673) HX711_MAIN: [23] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (54673) HX711_MAIN: [24] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (55673) HX711_MAIN: [25] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (56673) HX711_MAIN: [26] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (57673) HX711_MAIN: [27] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (58673) HX711_MAIN: [28] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (59673) HX711_MAIN: [29] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (60673) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (60673) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (60673) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (60673) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (60673) HX711_MAIN: [30] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (61683) HX711_MAIN: [31] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (62683) HX711_MAIN: [32] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (63683) HX711_MAIN: [33] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (64683) HX711_MAIN: [34] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (65683) HX711_MAIN: [35] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (66683) HX711_MAIN: [36] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (67683) HX711_MAIN: [37] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (68683) HX711_MAIN: [38] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (69683) HX711_MAIN: [39] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (70683) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (70683) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (70683) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (70683) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (70683) HX711_MAIN: [40] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (71693) HX711_MAIN: [41] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (72693) HX711_MAIN: [42] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (73693) HX711_MAIN: [43] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (74693) HX711_MAIN: [44] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (75693) HX711_MAIN: [45] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (76693) HX711_MAIN: [46] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (77693) HX711_MAIN: [47] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (78693) HX711_MAIN: [48] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (79693) HX711_MAIN: [49] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (80693) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (80693) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (80693) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (80693) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (80693) HX711_MAIN: [50] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (81703) HX711_MAIN: [51] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (82703) HX711_MAIN: [52] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (83703) HX711_MAIN: [53] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (84703) HX711_MAIN: [54] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (85703) HX711_MAIN: [55] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (86703) HX711_MAIN: [56] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (87703) HX711_MAIN: [57] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (88703) HX711_MAIN: [58] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (89703) HX711_MAIN: [59] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (90703) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (90703) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (90703) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (90703) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (90703) HX711_MAIN: [60] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (91713) HX711_MAIN: [61] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (92713) HX711_MAIN: [62] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (93713) HX711_MAIN: [63] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (94713) HX711_MAIN: [64] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (95713) HX711_MAIN: [65] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (96713) HX711_MAIN: [66] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (97713) HX711_MAIN: [67] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (98713) HX711_MAIN: [68] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (99713) HX711_MAIN: [69] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (100713) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (100713) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (100713) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (100713) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (100713) HX711_MAIN: [70] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (101723) HX711_MAIN: [71] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (102723) HX711_MAIN: [72] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (103723) HX711_MAIN: [73] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (104723) HX711_MAIN: [74] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (105723) HX711_MAIN: [75] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (106723) HX711_MAIN: [76] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (107723) HX711_MAIN: [77] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (108723) HX711_MAIN: [78] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (109723) HX711_MAIN: [79] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (110723) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (110723) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (110723) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (110723) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (110723) HX711_MAIN: [80] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (111733) HX711_MAIN: [81] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (112733) HX711_MAIN: [82] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (113733) HX711_MAIN: [83] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (114733) HX711_MAIN: [84] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (115733) HX711_MAIN: [85] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (116733) HX711_MAIN: [86] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (117733) HX711_MAIN: [87] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (118733) HX711_MAIN: [88] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (119733) HX711_MAIN: [89] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (120733) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (120733) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (120733) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (120733) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (120733) HX711_MAIN: [90] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (121743) HX711_MAIN: [91] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (122743) HX711_MAIN: [92] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (123743) HX711_MAIN: [93] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (124743) HX711_MAIN: [94] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (125743) HX711_MAIN: [95] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (126743) HX711_MAIN: [96] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (127743) HX711_MAIN: [97] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (128743) HX711_MAIN: [98] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (129743) HX711_MAIN: [99] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (130743) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (130743) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (130743) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (130743) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (130743) HX711_MAIN: [100] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (131753) HX711_MAIN: [101] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (132753) HX711_MAIN: [102] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (133753) HX711_MAIN: [103] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (134753) HX711_MAIN: [104] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (135753) HX711_MAIN: [105] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (136753) HX711_MAIN: [106] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (137753) HX711_MAIN: [107] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (138753) HX711_MAIN: [108] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (139753) HX711_MAIN: [109] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (140753) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (140753) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (140753) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (140753) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (140753) HX711_MAIN: [110] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (141763) HX711_MAIN: [111] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (142763) HX711_MAIN: [112] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (143763) HX711_MAIN: [113] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (144763) HX711_MAIN: [114] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (145763) HX711_MAIN: [115] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (146763) HX711_MAIN: [116] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (147763) HX711_MAIN: [117] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (148763) HX711_MAIN: [118] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (149763) HX711_MAIN: [119] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (150763) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (150763) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (150763) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (150763) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (150763) HX711_MAIN: [120] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (151773) HX711_MAIN: [121] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (152773) HX711_MAIN: [122] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (153773) HX711_MAIN: [123] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (154773) HX711_MAIN: [124] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (155773) HX711_MAIN: [125] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (156773) HX711_MAIN: [126] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (157773) HX711_MAIN: [127] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (158773) HX711_MAIN: [128] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (159773) HX711_MAIN: [129] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (160773) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (160773) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (160773) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (160773) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (160773) HX711_MAIN: [130] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (161783) HX711_MAIN: [131] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (162783) HX711_MAIN: [132] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (163783) HX711_MAIN: [133] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (164783) HX711_MAIN: [134] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (165783) HX711_MAIN: [135] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (166783) HX711_MAIN: [136] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (167783) HX711_MAIN: [137] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (168783) HX711_MAIN: [138] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (169783) HX711_MAIN: [139] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (170783) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (170783) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (170783) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (170783) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (170783) HX711_MAIN: [140] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (171793) HX711_MAIN: [141] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (172793) HX711_MAIN: [142] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (173793) HX711_MAIN: [143] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (174793) HX711_MAIN: [144] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (175793) HX711_MAIN: [145] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (176793) HX711_MAIN: [146] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (177793) HX711_MAIN: [147] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (178793) HX711_MAIN: [148] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (179793) HX711_MAIN: [149] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (180793) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (180793) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (180793) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (180793) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (180793) HX711_MAIN: [150] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (181803) HX711_MAIN: [151] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (182803) HX711_MAIN: [152] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (183803) HX711_MAIN: [153] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (184803) HX711_MAIN: [154] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (185803) HX711_MAIN: [155] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (186803) HX711_MAIN: [156] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (187803) HX711_MAIN: [157] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (188803) HX711_MAIN: [158] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (189803) HX711_MAIN: [159] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (190803) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (190803) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (190803) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (190803) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (190803) HX711_MAIN: [160] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (191813) HX711_MAIN: [161] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (192813) HX711_MAIN: [162] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (193813) HX711_MAIN: [163] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (194813) HX711_MAIN: [164] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (195813) HX711_MAIN: [165] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (196813) HX711_MAIN: [166] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (197813) HX711_MAIN: [167] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (198813) HX711_MAIN: [168] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (199813) HX711_MAIN: [169] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (200813) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (200813) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (200813) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (200813) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (200813) HX711_MAIN: [170] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (201823) HX711_MAIN: [171] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (202823) HX711_MAIN: [172] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (203823) HX711_MAIN: [173] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (204823) HX711_MAIN: [174] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (205823) HX711_MAIN: [175] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (206823) HX711_MAIN: [176] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (207823) HX711_MAIN: [177] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (208823) HX711_MAIN: [178] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (209823) HX711_MAIN: [179] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (210823) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (210823) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (210823) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (210823) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (210823) HX711_MAIN: [180] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (211833) HX711_MAIN: [181] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (212833) HX711_MAIN: [182] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (213833) HX711_MAIN: [183] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (214833) HX711_MAIN: [184] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (215833) HX711_MAIN: [185] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (216833) HX711_MAIN: [186] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (217833) HX711_MAIN: [187] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (218833) HX711_MAIN: [188] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (219833) HX711_MAIN: [189] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (220833) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (220833) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (220833) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (220833) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (220833) HX711_MAIN: [190] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (221843) HX711_MAIN: [191] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (222843) HX711_MAIN: [192] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (223843) HX711_MAIN: [193] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (224843) HX711_MAIN: [194] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (225843) HX711_MAIN: [195] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (226843) HX711_MAIN: [196] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (227843) HX711_MAIN: [197] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (228843) HX711_MAIN: [198] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (229843) HX711_MAIN: [199] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (230843) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (230843) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (230843) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (230843) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (230843) HX711_MAIN: [200] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (231853) HX711_MAIN: [201] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (232853) HX711_MAIN: [202] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (233853) HX711_MAIN: [203] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (234853) HX711_MAIN: [204] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (235853) HX711_MAIN: [205] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (236853) HX711_MAIN: [206] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (237853) HX711_MAIN: [207] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (238853) HX711_MAIN: [208] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (239853) HX711_MAIN: [209] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (240853) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (240853) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (240853) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (240853) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (240853) HX711_MAIN: [210] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (241863) HX711_MAIN: [211] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (242863) HX711_MAIN: [212] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (243863) HX711_MAIN: [213] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (244863) HX711_MAIN: [214] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (245863) HX711_MAIN: [215] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (246863) HX711_MAIN: [216] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (247863) HX711_MAIN: [217] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (248863) HX711_MAIN: [218] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (249863) HX711_MAIN: [219] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (250863) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (250863) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (250863) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (250863) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (250863) HX711_MAIN: [220] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (251873) HX711_MAIN: [221] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (252873) HX711_MAIN: [222] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (253873) HX711_MAIN: [223] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (254873) HX711_MAIN: [224] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (255873) HX711_MAIN: [225] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (256873) HX711_MAIN: [226] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (257873) HX711_MAIN: [227] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (258873) HX711_MAIN: [228] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (259873) HX711_MAIN: [229] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (260873) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (260873) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (260873) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (260873) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (260873) HX711_MAIN: [230] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (261883) HX711_MAIN: [231] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (262883) HX711_MAIN: [232] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (263883) HX711_MAIN: [233] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (264883) HX711_MAIN: [234] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (265883) HX711_MAIN: [235] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (266883) HX711_MAIN: [236] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (267883) HX711_MAIN: [237] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (268883) HX711_MAIN: [238] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (269883) HX711_MAIN: [239] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (270883) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (270883) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (270883) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (270883) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (270883) HX711_MAIN: [240] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (271893) HX711_MAIN: [241] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (272893) HX711_MAIN: [242] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (273893) HX711_MAIN: [243] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (274893) HX711_MAIN: [244] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (275893) HX711_MAIN: [245] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (276893) HX711_MAIN: [246] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (277893) HX711_MAIN: [247] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (278893) HX711_MAIN: [248] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (279893) HX711_MAIN: [249] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (280893) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (280893) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (280893) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (280893) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (280893) HX711_MAIN: [250] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (281903) HX711_MAIN: [251] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (282903) HX711_MAIN: [252] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (283903) HX711_MAIN: [253] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (284903) HX711_MAIN: [254] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (285903) HX711_MAIN: [255] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (286903) HX711_MAIN: [256] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (287903) HX711_MAIN: [257] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (288903) HX711_MAIN: [258] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (289903) HX711_MAIN: [259] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (290903) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (290903) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (290903) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (290903) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (290903) HX711_MAIN: [260] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (291913) HX711_MAIN: [261] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (292913) HX711_MAIN: [262] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (293913) HX711_MAIN: [263] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (294913) HX711_MAIN: [264] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (295913) HX711_MAIN: [265] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (296913) HX711_MAIN: [266] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (297913) HX711_MAIN: [267] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (298913) HX711_MAIN: [268] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (299913) HX711_MAIN: [269] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (300913) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (300913) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (300913) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (300913) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (300913) HX711_MAIN: [270] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (301923) HX711_MAIN: [271] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (302923) HX711_MAIN: [272] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (303923) HX711_MAIN: [273] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (304923) HX711_MAIN: [274] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (305923) HX711_MAIN: [275] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (306923) HX711_MAIN: [276] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (307923) HX711_MAIN: [277] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (308923) HX711_MAIN: [278] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (309923) HX711_MAIN: [279] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (310923) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (310923) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (310923) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (310923) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (310923) HX711_MAIN: [280] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (311933) HX711_MAIN: [281] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (312933) HX711_MAIN: [282] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (313933) HX711_MAIN: [283] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (314933) HX711_MAIN: [284] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (315933) HX711_MAIN: [285] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (316933) HX711_MAIN: [286] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (317933) HX711_MAIN: [287] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (318933) HX711_MAIN: [288] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (319933) HX711_MAIN: [289] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (320933) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (320933) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (320933) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (320933) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (320933) HX711_MAIN: [290] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (321943) HX711_MAIN: [291] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (322943) HX711_MAIN: [292] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (323943) HX711_MAIN: [293] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (324943) HX711_MAIN: [294] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (325943) HX711_MAIN: [295] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (326943) HX711_MAIN: [296] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (327943) HX711_MAIN: [297] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (328943) HX711_MAIN: [298] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (329943) HX711_MAIN: [299] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (330943) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (330943) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (330943) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (330943) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (330943) HX711_MAIN: [300] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (331953) HX711_MAIN: [301] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (332953) HX711_MAIN: [302] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (333953) HX711_MAIN: [303] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (334953) HX711_MAIN: [304] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (335953) HX711_MAIN: [305] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (336953) HX711_MAIN: [306] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (337953) HX711_MAIN: [307] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (338953) HX711_MAIN: [308] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (339953) HX711_MAIN: [309] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (340953) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (340953) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (340953) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (340953) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (340953) HX711_MAIN: [310] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (341963) HX711_MAIN: [311] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (342963) HX711_MAIN: [312] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (343963) HX711_MAIN: [313] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (344963) HX711_MAIN: [314] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (345963) HX711_MAIN: [315] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (346963) HX711_MAIN: [316] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (347963) HX711_MAIN: [317] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (348963) HX711_MAIN: [318] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (349963) HX711_MAIN: [319] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (350963) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (350963) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (350963) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (350963) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (350963) HX711_MAIN: [320] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (351973) HX711_MAIN: [321] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (352973) HX711_MAIN: [322] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (353973) HX711_MAIN: [323] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (354973) HX711_MAIN: [324] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (355973) HX711_MAIN: [325] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (356973) HX711_MAIN: [326] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (357973) HX711_MAIN: [327] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (358973) HX711_MAIN: [328] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (359973) HX711_MAIN: [329] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (360973) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (360973) HX711_MAIN: Sensor listo: SÍ[0m
+[0;32mI (360973) HX711_MAIN: Offset: 3844777[0m
+[0;32mI (360973) HX711_MAIN: Escala: -279.62[0m
+[0;32mI (360973) HX711_MAIN: [330] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (361983) HX711_MAIN: [331] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (362983) HX711_MAIN: [332] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (363983) HX711_MAIN: [333] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (364983) HX711_MAIN: [334] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (365983) HX711_MAIN: [335] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (366983) HX711_MAIN: [336] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (367983) HX711_MAIN: [337] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (368983) HX711_MAIN: [338] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (369983) HX711_MAIN: [339] RAW: 1048575 | Peso: -16250.02 g[0m
+[0;32mI (370983) HX711_MAIN: 
+--- Estado del sensor ---[0m
+[0;32mI (370983) HX711_MAIN: Sen
