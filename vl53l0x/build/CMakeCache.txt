@@ -213,7 +213,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=vl53l0x_project
+CMAKE_PROJECT_NAME:STATIC=vl53l0x_test
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/home/antonio/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-ranlib
@@ -381,6 +381,15 @@ vl53l0x_project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 vl53l0x_project_SOURCE_DIR:STATIC=/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x
+
+//Value Computed by CMake
+vl53l0x_test_BINARY_DIR:STATIC=/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build
+
+//Value Computed by CMake
+vl53l0x_test_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+vl53l0x_test_SOURCE_DIR:STATIC=/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x
 
 
 ########################

@@ -1,25 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <driver/i2c.h>
+#include <esp_log.h>
+#include <esp_system.h>
+
+static const char *TAG = "VL53L0X_TEST";
+
+// Configuración I2C
+#define I2C_MASTER_SCL_IO           22    /*!< GPIO number used for I2C master clock */
+#define I2C_MASTER_SDA_IO           21    /*!< GPIO number used for I2C master data  */
+#define I2C_MASTER_NUM              0     /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
+#define I2C_MASTER_FREQ_HZ          400000                     /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_TIMEOUT_MS       1000
+
+// Configuración VL53L0X
+#define VL53L0X_I2C_ADDR            0x29
+#define VL53L0X_REG_IDENTIFICATION_MODEL_ID         0xC0
+#define VL53L0X_REG_IDENTIFICATION_REVISION_ID      0xC2
+#define VL53L0X_REG_PRE_RANGE_CONFIG_VCSEL_PERIOD   0x50
+#define VL53L0X_REG_FINAL_RANGE_CONFIG_VCSEL_PERIOD 0x70
+#define VL53L0X_REG_SYSRANGE_START                  0x00
+#define VL53L0X_REG_RESULT_INTERRUPT_STATUS         0x13
+#define VL53L0X_REG_RESULT_RANGE_STATUS             0x14
+
 /**
- * @file main.c
- * @brief Diagnóstico completo para VL53L0X
+ * @brief i2c master initialization
  */
+static esp_err_t i2c_master_init(void)
+{
+    int i2c_master_port = I2C_MASTER_NUM;
 
-/*#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/i2c.h"
-#include "esp_log.h"
-#include "nvs_flash.h"
-#include "vl53l0x.h"
-
-#define I2C_MASTER_SCL_IO           22
-#define I2C_MASTER_SDA_IO           21
-#define I2C_MASTER_NUM              0
-#define I2C_MASTER_FREQ_HZ          400000
-#define VL53L0X_ADDRESS             0x29
-
-vl53l0x_sensor_t laser_sensor;
-
-static esp_err_t i2c_master_init(void) {
     i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = I2C_MASTER_SDA_IO,
@@ -27,717 +42,230 @@ static esp_err_t i2c_master_init(void) {
         .sda_pullup_en = GPIO_PULLUP_ENABLE,
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
         .master.clk_speed = I2C_MASTER_FREQ_HZ,
-        .clk_flags = 0,
     };
-    
-    esp_err_t ret = i2c_param_config(I2C_MASTER_NUM, &conf);
-    if (ret != ESP_OK) return ret;
-    
-    return i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0);
+
+    i2c_param_config(i2c_master_port, &conf);
+
+    return i2c_driver_install(i2c_master_port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
 }
 
-// Escaneo I2C detallado
-void detailed_i2c_scan(void) {
-    printf("\n=== ESCANEO I2C DETALLADO ===\n");
-    printf("Buscando dispositivos en el bus I2C...\n");
-    
-    bool device_found = false;
-    
-    for (uint8_t address = 1; address < 127; address++) {
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        
-        esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 100 / portTICK_PERIOD_MS);
-        i2c_cmd_link_delete(cmd);
-        
-        if (ret == ESP_OK) {
-            printf("✓ DISPOSITIVO ENCONTRADO en dirección: 0x%02X\n", address);
-            device_found = true;
-            
-            // Si encontramos el VL53L0X en dirección diferente
-            if (address != VL53L0X_ADDRESS) {
-                printf("  ⚠️  Esta NO es la dirección esperada (0x%02X)\n", VL53L0X_ADDRESS);
-            } else {
-                printf("  ✓ Esta ES la dirección correcta del VL53L0X!\n");
-            }
-        }
-    }
-    
-    if (!device_found) {
-        printf("❌ NO SE ENCONTRARON DISPOSITIVOS I2C\n");
-        printf("\nPOSIBLES CAUSAS:\n");
-        printf("1. VCC no conectado a 3.3V\n");
-        printf("2. GND no conectado\n");
-        printf("3. SCL no conectado a GPIO 22\n");
-        printf("4. SDA no conectado a GPIO 21\n");
-        printf("5. Cables defectuosos\n");
-        printf("6. Sensor dañado\n");
-    }
-    printf("===============================\n\n");
-}
-
-// Test de diferentes velocidades I2C
-void test_i2c_speeds(void) {
-    printf("=== TEST DE VELOCIDADES I2C ===\n");
-    
-    uint32_t speeds[] = {100000, 400000, 1000000}; // 100kHz, 400kHz, 1MHz
-    const char* speed_names[] = {"100 kHz", "400 kHz", "1 MHz"};
-    
-    for (int i = 0; i < 3; i++) {
-        printf("Probando velocidad: %s\n", speed_names[i]);
-        
-        // Reconfigurar I2C
-        i2c_driver_delete(I2C_MASTER_NUM);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        
-        i2c_config_t conf = {
-            .mode = I2C_MODE_MASTER,
-            .sda_io_num = I2C_MASTER_SDA_IO,
-            .scl_io_num = I2C_MASTER_SCL_IO,
-            .sda_pullup_en = GPIO_PULLUP_ENABLE,
-            .scl_pullup_en = GPIO_PULLUP_ENABLE,
-            .master.clk_speed = speeds[i],
-            .clk_flags = 0,
-        };
-        
-        esp_err_t ret = i2c_param_config(I2C_MASTER_NUM, &conf);
-        if (ret == ESP_OK) {
-            ret = i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0);
-        }
-        
-        if (ret == ESP_OK) {
-            vTaskDelay(100 / portTICK_PERIOD_MS);
-            
-            // Probar comunicación
-            i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-            i2c_master_start(cmd);
-            i2c_master_write_byte(cmd, (VL53L0X_ADDRESS << 1) | I2C_MASTER_WRITE, true);
-            i2c_master_stop(cmd);
-            
-            esp_err_t test_ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 1000 / portTICK_PERIOD_MS);
-            i2c_cmd_link_delete(cmd);
-            
-            if (test_ret == ESP_OK) {
-                printf("  ✓ FUNCIONA a %s\n", speed_names[i]);
-            } else {
-                printf("  ❌ Error a %s: %s\n", speed_names[i], esp_err_to_name(test_ret));
-            }
-        } else {
-            printf("  ❌ Error configurando %s\n", speed_names[i]);
-        }
-    }
-    printf("===============================\n\n");
-}
-
-void sensor_task(void *pvParameters) {
-    printf("\n🔍 DIAGNÓSTICO COMPLETO VL53L0X\n");
-    printf("================================\n");
-    
-    printf("Configuración actual:\n");
-    printf("  SCL: GPIO %d\n", I2C_MASTER_SCL_IO);
-    printf("  SDA: GPIO %d\n", I2C_MASTER_SDA_IO);
-    printf("  Dirección esperada: 0x%02X\n", VL53L0X_ADDRESS);
-    printf("  Velocidad I2C: %d Hz\n\n", I2C_MASTER_FREQ_HZ);
-    
-    // Esperar estabilización
-    printf("Esperando estabilización del sistema...\n");
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
-    
-    // Escaneo detallado
-    detailed_i2c_scan();
-    
-    // Test de velocidades
-    test_i2c_speeds();
-    
-    // Restaurar configuración original
-    i2c_driver_delete(I2C_MASTER_NUM);
-    i2c_master_init();
-    vTaskDelay(500 / portTICK_PERIOD_MS);
-    
-    printf("=== INTENTANDO INICIALIZACIÓN ===\n");
-    if (!vl53l0x_init(&laser_sensor, I2C_MASTER_NUM, VL53L0X_ADDRESS)) {
-        printf("❌ Inicialización FALLÓ\n");
-        printf("\nRECOMENDACIONES:\n");
-        printf("1. Verificar que VCC está conectado a 3.3V (NO 5V)\n");
-        printf("2. Verificar todas las conexiones con multímetro\n");
-        printf("3. Probar con cables más cortos\n");
-        printf("4. Verificar que el sensor no esté dañado\n");
-        vTaskDelete(NULL);
-        return;
-    }
-    
-    printf("✓ Inicialización EXITOSA!\n");
-    vl53l0x_set_accuracy(&laser_sensor, VL53L0X_ACCURACY_GOOD);
-    
-    printf("\n=== MEDICIONES ===\n");
-    while (1) {
-        uint16_t distance = vl53l0x_read_distance(&laser_sensor);
-        
-        if (distance > 0) {
-            printf("%u mm\n", distance);
-        } else {
-            printf("Error\n");
-        }
-        
-        vTaskDelay(500 / portTICK_PERIOD_MS);
-    }
-}
-
-void app_main(void) {
-    nvs_flash_init();
-    
-    if (i2c_master_init() != ESP_OK) {
-        printf("❌ Error inicializando I2C\n");
-        return;
-    }
-    
-    xTaskCreate(sensor_task, "sensor_task", 8192, NULL, 5, NULL);
-}*/
-
-/*#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/i2c.h"
-#include "driver/gpio.h"
-#include "esp_log.h"
-
-#define I2C_MASTER_SCL_IO           22
-#define I2C_MASTER_SDA_IO           21
-#define I2C_MASTER_NUM              0
-
-static esp_err_t i2c_init_with_config(uint32_t freq, bool pullup) {
-    // Eliminar driver previo si existe
-    i2c_driver_delete(I2C_MASTER_NUM);
-    vTaskDelay(100 / portTICK_PERIOD_MS);
-    
-    i2c_config_t conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = I2C_MASTER_SDA_IO,
-        .scl_io_num = I2C_MASTER_SCL_IO,
-        .sda_pullup_en = pullup ? GPIO_PULLUP_ENABLE : GPIO_PULLUP_DISABLE,
-        .scl_pullup_en = pullup ? GPIO_PULLUP_ENABLE : GPIO_PULLUP_DISABLE,
-        .master.clk_speed = freq,
-        .clk_flags = 0,
-    };
-    
-    esp_err_t ret = i2c_param_config(I2C_MASTER_NUM, &conf);
-    if (ret != ESP_OK) return ret;
-    
-    return i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0);
-}
-
-void test_i2c_scan_only(const char* description) {
-    printf("\n=== %s ===\n", description);
-    
-    uint8_t found_devices[10];
-    int found_count = 0;
-    
-    for (uint8_t address = 1; address < 127 && found_count < 10; address++) {
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        
-        esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 50 / portTICK_PERIOD_MS);
-        i2c_cmd_link_delete(cmd);
-        
-        if (ret == ESP_OK) {
-            printf("  ✓ Dispositivo: 0x%02X\n", address);
-            found_devices[found_count++] = address;
-        }
-    }
-    
-    printf("  Total encontrados: %d\n", found_count);
-    
-    // Probar lectura simple en cada dispositivo
-    for (int i = 0; i < found_count; i++) {
-        uint8_t addr = found_devices[i];
-        printf("  Probando lectura en 0x%02X: ", addr);
-        
-        // Intentar leer 1 byte desde registro 0x00
-        uint8_t reg = 0x00;
-        uint8_t data;
-        esp_err_t ret = i2c_master_write_read_device(I2C_MASTER_NUM, addr, 
-                                                   &reg, 1, &data, 1, 
-                                                   500 / portTICK_PERIOD_MS);
-        
-        if (ret == ESP_OK) {
-            printf("✓ Éxito (0x%02X)\n", data);
-        } else {
-            printf("❌ %s\n", esp_err_to_name(ret));
-        }
-        
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
-}
-
-void test_different_speeds() {
-    uint32_t speeds[] = {50000, 100000, 200000, 400000};
-    const char* speed_names[] = {"50 kHz", "100 kHz", "200 kHz", "400 kHz"};
-    
-    for (int i = 0; i < 4; i++) {
-        printf("\n======================================\n");
-        printf("PROBANDO VELOCIDAD: %s\n", speed_names[i]);
-        
-        if (i2c_init_with_config(speeds[i], true) == ESP_OK) {
-            vTaskDelay(200 / portTICK_PERIOD_MS);
-            test_i2c_scan_only(speed_names[i]);
-        } else {
-            printf("❌ Error configurando %s\n", speed_names[i]);
-        }
-    }
-}
-
-void test_pullup_configurations() {
-    printf("\n=====================================\n");
-    printf("PROBANDO CONFIGURACIONES DE PULL-UP\n");
-    printf("=====================================\n");
-    
-    // Test con pull-ups internos habilitados
-    printf("\n--- CON PULL-UPS INTERNOS ---\n");
-    if (i2c_init_with_config(100000, true) == ESP_OK) {
-        vTaskDelay(200 / portTICK_PERIOD_MS);
-        test_i2c_scan_only("Pull-ups internos ON");
-    }
-    
-    // Test sin pull-ups internos
-    printf("\n--- SIN PULL-UPS INTERNOS ---\n");
-    if (i2c_init_with_config(100000, false) == ESP_OK) {
-        vTaskDelay(200 / portTICK_PERIOD_MS);
-        test_i2c_scan_only("Pull-ups internos OFF");
-    }
-}
-
-void test_vl53l0x_specific() {
-    printf("\n=====================================\n");
-    printf("TEST ESPECÍFICO PARA VL53L0X\n");
-    printf("=====================================\n");
-    
-    // Probar direcciones típicas de VL53L0X
-    uint8_t vl53l0x_addresses[] = {0x29, 0x52, 0x54};
-    
-    for (int i = 0; i < 3; i++) {
-        uint8_t addr = vl53l0x_addresses[i];
-        printf("\nProbando dirección VL53L0X típica: 0x%02X\n", addr);
-        
-        // Test de conectividad básica
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (addr << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        
-        esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 100 / portTICK_PERIOD_MS);
-        i2c_cmd_link_delete(cmd);
-        
-        if (ret == ESP_OK) {
-            printf("  ✓ Responde en 0x%02X\n", addr);
-            
-            // Intentar leer registro de identificación
-            uint8_t reg = 0xC0;  // Model ID register
-            uint8_t model_id;
-            ret = i2c_master_write_read_device(I2C_MASTER_NUM, addr, 
-                                             &reg, 1, &model_id, 1, 
-                                             1000 / portTICK_PERIOD_MS);
-            
-            if (ret == ESP_OK) {
-                printf("  ✓ Model ID: 0x%02X", model_id);
-                if (model_id == 0xEE) {
-                    printf(" ← ¡ESTE ES VL53L0X!\n");
-                } else {
-                    printf(" (no es VL53L0X)\n");
-                }
-            } else {
-                printf("  ❌ Error leyendo Model ID: %s\n", esp_err_to_name(ret));
-            }
-        } else {
-            printf("  ❌ No responde en 0x%02X\n", addr);
-        }
-    }
-}
-
-void check_gpio_status() {
-    printf("\n=====================================\n");
-    printf("VERIFICACIÓN DE ESTADO GPIO\n");
-    printf("=====================================\n");
-    
-    // Leer estado actual de los pines
-    int scl_level = gpio_get_level(I2C_MASTER_SCL_IO);
-    int sda_level = gpio_get_level(I2C_MASTER_SDA_IO);
-    
-    printf("Estado actual de pines:\n");
-    printf("  SCL (GPIO %d): %s\n", I2C_MASTER_SCL_IO, scl_level ? "HIGH" : "LOW");
-    printf("  SDA (GPIO %d): %s\n", I2C_MASTER_SDA_IO, sda_level ? "HIGH" : "LOW");
-    
-    if (scl_level == 0 || sda_level == 0) {
-        printf("\n⚠️  PROBLEMA: Uno o ambos pines están en LOW\n");
-        printf("    Esto indica:\n");
-        printf("    - Pull-ups insuficientes\n");
-        printf("    - Dispositivo manteniendo línea baja\n");
-        printf("    - Cortocircuito\n");
-    } else {
-        printf("\n✓ Ambos pines están en HIGH (estado idle correcto)\n");
-    }
-}
-
-void app_main(void) {
-    printf("\n🔧 DIAGNÓSTICO I2C AVANZADO\n");
-    printf("===========================\n");
-    printf("Análisis detallado de problemas I2C\n\n");
-    
-    // Verificar estado inicial de GPIO
-    check_gpio_status();
-    
-    // Probar diferentes configuraciones de pull-up
-    test_pullup_configurations();
-    
-    // Probar diferentes velocidades
-    test_different_speeds();
-    
-    // Test específico para VL53L0X
-    test_vl53l0x_specific();
-    
-    printf("\n=====================================\n");
-    printf("RECOMENDACIONES BASADAS EN RESULTADOS:\n");
-    printf("=====================================\n");
-    printf("1. Si alguna configuración permitió lecturas:\n");
-    printf("   → Usar esa configuración específica\n");
-    printf("2. Si ninguna funcionó:\n");
-    printf("   → Añadir resistencias pull-up externas (4.7kΩ)\n");
-    printf("   → Verificar conexiones físicas\n");
-    printf("   → Probar con cables más cortos\n");
-    printf("3. Si encontró VL53L0X:\n");
-    printf("   → Anotar la dirección que funcionó\n");
-    printf("=====================================\n");
-    
-    // Mantener programa ejecutándose
-    while (1) {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-}*/
-/*
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/gpio.h"
-#include "esp_log.h"
-
-#define SCL_PIN 22
-#define SDA_PIN 21
-
-void test_gpio_without_i2c(void) {
-    printf("\n🔧 TEST GPIO SIN I2C (SENSOR DESCONECTADO)\n");
-    printf("==========================================\n");
-    
-    // Configurar como entrada con pull-up
-    gpio_config_t io_conf = {
-        .intr_type = GPIO_INTR_DISABLE,
-        .mode = GPIO_MODE_INPUT,
-        .pin_bit_mask = (1ULL << SCL_PIN) | (1ULL << SDA_PIN),
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .pull_up_en = GPIO_PULLUP_ENABLE,
-    };
-    gpio_config(&io_conf);
-    
-    vTaskDelay(100 / portTICK_PERIOD_MS);
-    
-    int scl_level = gpio_get_level(SCL_PIN);
-    int sda_level = gpio_get_level(SDA_PIN);
-    
-    printf("Con pull-ups internos:\n");
-    printf("  SCL (GPIO %d): %s\n", SCL_PIN, scl_level ? "HIGH ✓" : "LOW ❌");
-    printf("  SDA (GPIO %d): %s\n", SDA_PIN, sda_level ? "HIGH ✓" : "LOW ❌");
-    
-    if (scl_level && sda_level) {
-        printf("\n✅ PINES OK SIN SENSOR\n");
-        printf("Problema: Pull-ups insuficientes cuando sensor conectado\n");
-        printf("SOLUCIÓN: Añadir resistencias pull-up externas\n");
-    } else {
-        printf("\n❌ PINES DEFECTUOSOS\n");
-        printf("Problema: GPIO del ESP32 dañados o configuración incorrecta\n");
-        printf("SOLUCIÓN: Usar otros pines GPIO\n");
-    }
-}
-
-void test_alternative_pins(void) {
-    printf("\n🔄 PROBANDO PINES ALTERNATIVOS\n");
-    printf("==============================\n");
-    
-    int alternative_pins[][2] = {
-        {18, 19},
-        {16, 17}, 
-        {25, 26},
-        {32, 33}
-    };
-    
-    for (int i = 0; i < 4; i++) {
-        int scl_alt = alternative_pins[i][0];
-        int sda_alt = alternative_pins[i][1];
-        
-        printf("\nProbando SCL:%d, SDA:%d\n", scl_alt, sda_alt);
-        
-        gpio_config_t io_conf = {
-            .intr_type = GPIO_INTR_DISABLE,
-            .mode = GPIO_MODE_INPUT,
-            .pin_bit_mask = (1ULL << scl_alt) | (1ULL << sda_alt),
-            .pull_down_en = GPIO_PULLDOWN_DISABLE,
-            .pull_up_en = GPIO_PULLUP_ENABLE,
-        };
-        gpio_config(&io_conf);
-        
-        vTaskDelay(50 / portTICK_PERIOD_MS);
-        
-        int scl_level = gpio_get_level(scl_alt);
-        int sda_level = gpio_get_level(sda_alt);
-        
-        printf("  SCL:%s SDA:%s", 
-               scl_level ? "HIGH" : "LOW",
-               sda_level ? "HIGH" : "LOW");
-        
-        if (scl_level && sda_level) {
-            printf(" ✅ ESTOS PINES FUNCIONAN\n");
-        } else {
-            printf(" ❌\n");
-        }
-    }
-}
-
-void app_main(void) {
-    printf("\n⚠️  INSTRUCCIONES IMPORTANTES ⚠️\n");
-    printf("================================\n");
-    printf("1. DESCONECTA COMPLETAMENTE el sensor VL53L0X\n");
-    printf("2. Deja solo el ESP32 conectado por USB\n");
-    printf("3. Este test verificará los GPIO sin sensor\n");
-    printf("================================\n\n");
-    
-    printf("Esperando 5 segundos para desconectar sensor...\n");
-    for (int i = 5; i > 0; i--) {
-        printf("%d...\n", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-    
-    test_gpio_without_i2c();
-    test_alternative_pins();
-    
-    printf("\n📋 PRÓXIMOS PASOS:\n");
-    printf("=================\n");
-    printf("1. Si GPIO 22/21 funcionan sin sensor:\n");
-    printf("   → Añadir resistencias pull-up externas\n");
-    printf("   → O usar pines alternativos que funcionen\n\n");
-    
-    printf("2. Si GPIO 22/21 NO funcionan:\n");
-    printf("   → Usar pines alternativos\n");
-    printf("   → Cambiar configuración en el código\n\n");
-    
-    printf("3. Después de elegir pines:\n");
-    printf("   → Reconectar sensor\n");
-    printf("   → Probar nuevamente\n");
-    printf("=================\n");
-}
-*/
 /**
- * @file test_conexiones.c
- * @brief Verificación paso a paso de conexiones
+ * @brief Escribir un byte al registro del VL53L0X
  */
-
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "driver/i2c.h"
-#include "driver/gpio.h"
-#include "esp_log.h"
-
-#define I2C_SCL_PIN    18
-#define I2C_SDA_PIN    19
-#define XSHUT_PIN      23
-#define I2C_MASTER_NUM 0
-
-static esp_err_t i2c_init_simple(void) {
-    i2c_config_t conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = I2C_SDA_PIN,
-        .scl_io_num = I2C_SCL_PIN,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_speed = 100000,
-        .clk_flags = 0,
-    };
-    
-    esp_err_t ret = i2c_param_config(I2C_MASTER_NUM, &conf);
-    if (ret != ESP_OK) return ret;
-    
-    return i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0);
+static esp_err_t vl53l0x_write_byte(uint8_t reg_addr, uint8_t data)
+{
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VL53L0X_I2C_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_write_byte(cmd, reg_addr, true);
+    i2c_master_write_byte(cmd, data, true);
+    i2c_master_stop(cmd);
+    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS);
+    i2c_cmd_link_delete(cmd);
+    return ret;
 }
 
-void test_step_by_step(void) {
-    printf("\n🔧 VERIFICACIÓN PASO A PASO\n");
-    printf("===========================\n");
-    printf("Conecta los cables UNO POR UNO y presiona Enter\n");
-    printf("===========================\n");
-    
-    printf("\n📋 PASO 1: Solo conectar VCC y GND\n");
-    printf("-----------------------------------\n");
-    printf("Conecta SOLO:\n");
-    printf("  Sensor VCC  → ESP32 3.3V\n");
-    printf("  Sensor GND  → ESP32 GND\n");
-    printf("NO conectes SCL, SDA, ni XSHUT todavía\n");
-    printf("Presiona Enter cuando esté listo...\n");
-    
-    // Esperar entrada (simulado con delay)
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-    
-    printf("✅ Paso 1 completado\n");
-    printf("¿Se enciende algún LED en el sensor? (Anota la respuesta)\n");
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
-    
-    printf("\n📋 PASO 2: Conectar XSHUT\n");
-    printf("--------------------------\n");
-    printf("Añade SOLO:\n");
-    printf("  Sensor XSHUT → ESP32 GPIO 23\n");
-    printf("Presiona Enter cuando esté listo...\n");
-    
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-    
-    // Configurar XSHUT
-    gpio_config_t io_conf = {
-        .intr_type = GPIO_INTR_DISABLE,
-        .mode = GPIO_MODE_OUTPUT,
-        .pin_bit_mask = (1ULL << XSHUT_PIN),
-        .pull_down_en = 0,
-        .pull_up_en = 0,
-    };
-    gpio_config(&io_conf);
-    gpio_set_level(XSHUT_PIN, 1);
-    
-    printf("✅ XSHUT configurado en HIGH\n");
-    printf("¿Cambia algo en el sensor? (LED se enciende/apaga?)\n");
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
-    
-    printf("\n📋 PASO 3: Conectar SCL\n");
-    printf("------------------------\n");
-    printf("Añade SOLO:\n");
-    printf("  Sensor SCL → ESP32 GPIO 18\n");
-    printf("Presiona Enter cuando esté listo...\n");
-    
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-    
-    // Verificar GPIO después de conectar SCL
-    int scl_level = gpio_get_level(I2C_SCL_PIN);
-    printf("Estado SCL después de conectar: %s\n", scl_level ? "HIGH ✅" : "LOW ❌");
-    
-    if (!scl_level) {
-        printf("⚠️ PROBLEMA: SCL se fue a LOW\n");
-        printf("Esto indica:\n");
-        printf("  - Cable SCL con cortocircuito\n");
-        printf("  - Sensor defectuoso\n");
-        printf("  - Conexión incorrecta\n");
-        return;
-    }
-    
-    printf("\n📋 PASO 4: Conectar SDA\n");
-    printf("------------------------\n");
-    printf("Añade FINALMENTE:\n");
-    printf("  Sensor SDA → ESP32 GPIO 19\n");
-    printf("Presiona Enter cuando esté listo...\n");
-    
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-    
-    // Verificar GPIO después de conectar SDA
-    scl_level = gpio_get_level(I2C_SCL_PIN);
-    int sda_level = gpio_get_level(I2C_SDA_PIN);
-    
-    printf("Estado final:\n");
-    printf("  SCL: %s\n", scl_level ? "HIGH ✅" : "LOW ❌");
-    printf("  SDA: %s\n", sda_level ? "HIGH ✅" : "LOW ❌");
-    
-    if (!scl_level || !sda_level) {
-        printf("\n❌ PROBLEMA IDENTIFICADO\n");
-        printf("Una línea I2C se fue a LOW al conectar\n");
-        printf("Soluciones:\n");
-        printf("  1. Cambiar cable defectuoso\n");
-        printf("  2. Usar breadboard diferente\n");
-        printf("  3. El sensor está realmente defectuoso\n");
-        return;
-    }
-    
-    printf("\n✅ TODAS LAS CONEXIONES OK\n");
-    printf("Procediendo a test I2C...\n");
+/**
+ * @brief Leer un byte del registro del VL53L0X
+ */
+static esp_err_t vl53l0x_read_byte(uint8_t reg_addr, uint8_t *data)
+{
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VL53L0X_I2C_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_write_byte(cmd, reg_addr, true);
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VL53L0X_I2C_ADDR << 1) | I2C_MASTER_READ, true);
+    i2c_master_read_byte(cmd, data, I2C_MASTER_LAST_NACK);
+    i2c_master_stop(cmd);
+    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS);
+    i2c_cmd_link_delete(cmd);
+    return ret;
 }
 
-void test_i2c_final(void) {
-    printf("\n🔍 TEST I2C FINAL\n");
-    printf("==================\n");
+/**
+ * @brief Leer múltiples bytes del VL53L0X
+ */
+static esp_err_t vl53l0x_read_bytes(uint8_t reg_addr, uint8_t *data, size_t len)
+{
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VL53L0X_I2C_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_write_byte(cmd, reg_addr, true);
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (VL53L0X_I2C_ADDR << 1) | I2C_MASTER_READ, true);
+    i2c_master_read(cmd, data, len, I2C_MASTER_LAST_NACK);
+    i2c_master_stop(cmd);
+    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, I2C_MASTER_TIMEOUT_MS / portTICK_PERIOD_MS);
+    i2c_cmd_link_delete(cmd);
+    return ret;
+}
+
+/**
+ * @brief Inicializar el sensor VL53L0X
+ */
+static esp_err_t vl53l0x_init(void)
+{
+    uint8_t model_id, revision_id;
     
-    if (i2c_init_simple() != ESP_OK) {
-        printf("❌ Error inicializando I2C\n");
-        return;
+    // Leer ID del modelo
+    esp_err_t ret = vl53l0x_read_byte(VL53L0X_REG_IDENTIFICATION_MODEL_ID, &model_id);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error leyendo Model ID");
+        return ret;
     }
     
-    printf("Escaneando I2C...\n");
-    bool found = false;
+    // Leer ID de revisión
+    ret = vl53l0x_read_byte(VL53L0X_REG_IDENTIFICATION_REVISION_ID, &revision_id);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error leyendo Revision ID");
+        return ret;
+    }
     
-    for (uint8_t addr = 0x20; addr < 0x60; addr++) {
-        i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (addr << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        
-        esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 500 / portTICK_PERIOD_MS);
-        i2c_cmd_link_delete(cmd);
-        
-        if (ret == ESP_OK) {
-            printf("✅ Dispositivo encontrado: 0x%02X", addr);
-            if (addr == 0x29) printf(" ← ¡VL53L0X!");
-            printf("\n");
-            found = true;
+    ESP_LOGI(TAG, "VL53L0X detectado - Model ID: 0x%02X, Revision ID: 0x%02X", model_id, revision_id);
+    
+    if (model_id != 0xEE) {
+        ESP_LOGE(TAG, "Model ID incorrecto. Esperado: 0xEE, Recibido: 0x%02X", model_id);
+        return ESP_ERR_NOT_FOUND;
+    }
+    
+    return ESP_OK;
+}
+
+/**
+ * @brief Realizar una medición de distancia
+ */
+static esp_err_t vl53l0x_read_range(uint16_t *range_mm)
+{
+    esp_err_t ret;
+    uint8_t val = 0;
+    uint8_t range_data[12];
+    
+    // Iniciar medición
+    ret = vl53l0x_write_byte(VL53L0X_REG_SYSRANGE_START, 0x01);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error iniciando medición");
+        return ret;
+    }
+    
+    // Esperar a que la medición esté lista
+    int timeout = 1000; // 1 segundo timeout
+    do {
+        ret = vl53l0x_read_byte(VL53L0X_REG_RESULT_INTERRUPT_STATUS, &val);
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Error leyendo status de interrupción");
+            return ret;
         }
-        
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(pdMS_TO_TICKS(1));
+        timeout--;
+    } while ((val & 0x07) == 0 && timeout > 0);
+    
+    if (timeout <= 0) {
+        ESP_LOGE(TAG, "Timeout esperando medición");
+        return ESP_ERR_TIMEOUT;
     }
     
-    if (!found) {
-        printf("❌ NO se encontraron dispositivos\n");
-        printf("\nPOSIBLES CAUSAS:\n");
-        printf("1. Ambos sensores defectuosos\n");
-        printf("2. Conexiones aún incorrectas\n");
-        printf("3. Sensores falsificados\n");
-        printf("4. Necesita resistencias pull-up externas\n");
-    } else {
-        printf("\n🎉 ¡SENSOR DETECTADO!\n");
-        printf("El problema estaba en las conexiones\n");
+    // Leer datos del rango
+    ret = vl53l0x_read_bytes(VL53L0X_REG_RESULT_RANGE_STATUS, range_data, 12);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error leyendo datos de rango");
+        return ret;
     }
+    
+    // Extraer la distancia (bytes 10 y 11)
+    *range_mm = (range_data[10] << 8) | range_data[11];
+    
+    // Limpiar interrupt
+    ret = vl53l0x_write_byte(VL53L0X_REG_RESULT_INTERRUPT_STATUS, 0x01);
+    
+    return ret;
 }
 
-void app_main(void) {
-    printf("\n🔧 VERIFICACIÓN CONEXIONES PASO A PASO\n");
-    printf("======================================\n");
-    printf("Vamos a conectar el sensor paso a paso\n");
-    printf("para identificar exactamente dónde está el problema\n");
-    printf("======================================\n");
-    
-    // Asegurar que GPIO estén en estado conocido
-    gpio_config_t io_conf = {
-        .intr_type = GPIO_INTR_DISABLE,
-        .mode = GPIO_MODE_INPUT,
-        .pin_bit_mask = (1ULL << I2C_SCL_PIN) | (1ULL << I2C_SDA_PIN),
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .pull_up_en = GPIO_PULLUP_ENABLE,
-    };
-    gpio_config(&io_conf);
-    
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
-    
-    test_step_by_step();
-    test_i2c_final();
-    
-    printf("\n📋 RESUMEN:\n");
-    printf("===========\n");
-    printf("Si encontró dispositivo: ¡Problema solucionado!\n");
-    printf("Si NO encontró: Sensores defectuosos o necesita pull-ups externos\n");
-    printf("===========\n");
+/**
+ * @brief Mostrar información del sensor
+ */
+static void mostrar_info_sensor(void)
+{
+    ESP_LOGI(TAG, "=== INFORMACIÓN DEL SENSOR ===");
+    ESP_LOGI(TAG, "Modelo: VL53L0X");
+    ESP_LOGI(TAG, "Tipo: Sensor láser ToF (Time of Flight)");
+    ESP_LOGI(TAG, "Longitud de onda: 940 nm");
+    ESP_LOGI(TAG, "Rango de medición: 40mm - 4000mm");
+    ESP_LOGI(TAG, "Resolución: ±1mm");
+    ESP_LOGI(TAG, "Campo de visión: 15° - 27°");
+    ESP_LOGI(TAG, "Dirección I2C: 0x%02X", VL53L0X_I2C_ADDR);
+    ESP_LOGI(TAG, "===============================");
+}
+
+/**
+ * @brief Tarea principal del sensor
+ */
+static void vl53l0x_task(void *arg)
+{
+    uint16_t range_mm;
+    int contador = 0;
     
     while (1) {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        esp_err_t ret = vl53l0x_read_range(&range_mm);
+        
+        if (ret == ESP_OK) {
+            float range_cm = range_mm / 10.0;
+            
+            printf("Distancia: %d mm (%.1f cm)", range_mm, range_cm);
+            
+            // Indicador visual de proximidad
+            if (range_mm < 100) {
+                printf(" [MUY CERCA]");
+            } else if (range_mm < 300) {
+                printf(" [CERCA]");
+            } else if (range_mm < 1000) {
+                printf(" [MEDIO]");
+            } else {
+                printf(" [LEJOS]");
+            }
+            printf("\n");
+            
+        } else {
+            ESP_LOGW(TAG, "Error en medición o fuera de rango");
+        }
+        
+        // Mostrar información cada 20 mediciones
+        contador++;
+        if (contador >= 20) {
+            contador = 0;
+            mostrar_info_sensor();
+        }
+        
+        vTaskDelay(pdMS_TO_TICKS(500)); // Esperar 500ms
     }
+}
+
+void app_main(void)
+{
+    ESP_LOGI(TAG, "=== PRUEBA SENSOR VL53L0X ===");
+    
+    // Inicializar I2C
+    ESP_ERROR_CHECK(i2c_master_init());
+    ESP_LOGI(TAG, "I2C inicializado correctamente");
+    
+    // Esperar un poco para estabilización
+    vTaskDelay(pdMS_TO_TICKS(100));
+    
+    // Inicializar sensor VL53L0X
+    esp_err_t ret = vl53l0x_init();
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Error inicializando VL53L0X");
+        ESP_LOGE(TAG, "Verificar conexiones:");
+        ESP_LOGE(TAG, "VCC -> 3.3V");
+        ESP_LOGE(TAG, "GND -> GND");
+        ESP_LOGE(TAG, "SDA -> GPIO21");
+        ESP_LOGE(TAG, "SCL -> GPIO22");
+        return;
+    }
+    
+    ESP_LOGI(TAG, "Sensor VL53L0X inicializado correctamente!");
+    mostrar_info_sensor();
+    
+    // Crear tarea para lectura continua
+    xTaskCreate(vl53l0x_task, "vl53l0x_task", 4096, NULL, 5, NULL);
 }

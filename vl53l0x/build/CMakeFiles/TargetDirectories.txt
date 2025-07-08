@@ -11,7 +11,7 @@
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/flash.dir
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/encrypted-flash.dir
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/_project_elf_src.dir
-/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/vl53l0x_project.elf.dir
+/mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/vl53l0x_test.elf.dir
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/size.dir
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/size-files.dir
 /mnt/c/Users/Antonio/Documents/GitHub/pruebas_tfg/vl53l0x/build/CMakeFiles/size-components.dir
